@@ -12,7 +12,7 @@ public class Auto : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        boxcollider = GetComponent<BoxCollider2D>();
+       //boxcollider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
