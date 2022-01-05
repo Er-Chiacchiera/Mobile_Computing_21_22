@@ -5,33 +5,43 @@ using UnityEngine;
 public class RobotMovement : MonoBehaviour
 {
     public Joystick joystick;
-    private float horizontalMove = 0f;
-    private float verticalMove = 0f;
-    private float speed = 1f;
-    private Vector3 movement;
-    private RaycastHit2D hit;
-    private BoxCollider2D boxCollider;
+    private float speed = 1.5f;
+    public Rigidbody2D rigidBody;
+    Vector2 movement;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        boxCollider = GetComponent<BoxCollider2D>();
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        //hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0 )
+        //variabili
+        float horizontalMove = 0f;
+        float verticalMove = 0f;
 
-        //valori spostamento x e x dal joystick
-        horizontalMove = joystick.Horizontal * speed;
-        verticalMove = joystick.Vertical * speed;
-        movement = new Vector3(horizontalMove, verticalMove, 0);
+        //valori spostamento orizzontale
+        if (joystick.Horizontal > 0.2f)
+            horizontalMove = speed;
+        else
+            if (joystick.Horizontal < -0.2f)
+            horizontalMove = -speed;
+        else
+            horizontalMove = 0;
+
+        //valori spostamento verticale
+        if (joystick.Vertical > 0.2f)
+            verticalMove = speed;
+        else
+            if (joystick.Vertical < -0.2f)
+            verticalMove = -speed;
+        else
+            verticalMove = 0;
+        
+        //valore movimento
+        movement = new Vector2(horizontalMove, verticalMove);
 
         //spostamento
-        transform.Translate(movement * Time.deltaTime);
+        rigidBody.MovePosition(movement * Time.deltaTime);
+    }
 
-
+    private void FixedUpdate()
+    {
+        rigidBody.MovePosition(rigidBody.position + movement * speed * Time.fixedDeltaTime);
     }
 }

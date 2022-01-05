@@ -5,9 +5,9 @@ using UnityEngine;
 public class AutoMovimento : MonoBehaviour
 {
     //private RaycastHit2D hit;
-    private BoxCollider2D boxCollider;
+    //private BoxCollider2D boxCollider;
     private bool colliso = false;
-    // Start is called before the first frame update
+    
     private void Start()
     {
         //boxCollider = GetComponent<BoxCollider2D>();
@@ -21,7 +21,7 @@ public class AutoMovimento : MonoBehaviour
     {
         colliso = false;
     }
-    // Update is called once per frame
+    
     private void FixedUpdate()
     {
         if (!colliso)
