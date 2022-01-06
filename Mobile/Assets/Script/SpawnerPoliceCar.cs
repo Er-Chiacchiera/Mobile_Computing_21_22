@@ -7,7 +7,7 @@ public class SpawnerPoliceCar : MonoBehaviour
     [SerializeField]
     private float spawnRadius = 7;
     [SerializeField]
-    private float spawnRate = 0.3f;
+    private readonly float spawnRate = 0.3f;
     public GameObject car;
     public GameObject robot;
     // Start is called before the first frame update
