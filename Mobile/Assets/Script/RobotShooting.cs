@@ -5,10 +5,14 @@ using UnityEngine;
 public class RobotShooting : MonoBehaviour
 {
     public Joystick joystick;
-    public Transform firePoint;
+    public Transform firePointDx;
+    public Transform firePointSx;
     public GameObject bulletPrefab;
     private Vector2 direzione;
+
+    //distanza joystick per sparare
     private float distanzaJ = 0.5f;
+
     private float fireRate = 10f;
     private float lastShot = 0.0f;
 
@@ -28,9 +32,13 @@ public class RobotShooting : MonoBehaviour
     void Shoot()
     {
         lastShot = Time.time;
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
-
+        //sparo da destra
+        GameObject bulletDx = Instantiate(bulletPrefab, firePointDx.position, firePointDx.rotation);
+        Rigidbody2D rbDx = bulletDx.GetComponent<Rigidbody2D>();
+        rbDx.AddForce(firePointDx.up * bulletForce, ForceMode2D.Impulse);
+        //sparo da sinistra
+        GameObject bulletSx = Instantiate(bulletPrefab, firePointSx.position, firePointSx.rotation);
+        Rigidbody2D rbSx = bulletSx.GetComponent<Rigidbody2D>();
+        rbSx.AddForce(firePointSx.up * bulletForce, ForceMode2D.Impulse);
     }
 }
