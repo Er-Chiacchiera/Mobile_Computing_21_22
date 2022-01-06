@@ -24,8 +24,8 @@ public class AutoMovimento : MonoBehaviour
     
     private void FixedUpdate()
     {
-        if (!colliso)
+        //if (!colliso)
             //allora mi posso muovere
-            transform.position = new Vector2(transform.position.x, transform.position.y - (0.4f * Time.deltaTime));
+            //transform.position = new Vector2(transform.position.x, transform.position.y - (0.4f * Time.deltaTime));
     }
 }

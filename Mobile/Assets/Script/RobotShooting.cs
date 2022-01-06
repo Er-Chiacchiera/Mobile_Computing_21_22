@@ -12,10 +12,10 @@ public class RobotShooting : MonoBehaviour
 
     //distanza joystick per sparare
     private float distanzaJ = 0.5f;
-
+    [SerializeField]
     private float fireRate = 10f;
     private float lastShot = 0.0f;
-
+    [SerializeField]
     public float bulletForce = 5f;
 
     void Update()
@@ -35,6 +35,7 @@ public class RobotShooting : MonoBehaviour
         //sparo da destra
         GameObject bulletDx = Instantiate(bulletPrefab, firePointDx.position, firePointDx.rotation);
         Rigidbody2D rbDx = bulletDx.GetComponent<Rigidbody2D>();
+        
         rbDx.AddForce(firePointDx.up * bulletForce, ForceMode2D.Impulse);
         //sparo da sinistra
         GameObject bulletSx = Instantiate(bulletPrefab, firePointSx.position, firePointSx.rotation);
