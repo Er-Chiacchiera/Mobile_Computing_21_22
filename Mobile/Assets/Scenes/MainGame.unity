@@ -209,7 +209,6 @@ GameObject:
   - component: {fileID: 520198932}
   - component: {fileID: 520198931}
   - component: {fileID: 520198934}
-  - component: {fileID: 520198933}
   m_Layer: 11
   m_Name: Tilemap_Second
   m_TagString: Untagged
@@ -757,32 +756,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!61 &520198933
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 520198929}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -6.4735174, y: -0.00033283234}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.7379518, y: 3.8719969}
-  m_EdgeRadius: 0
 --- !u!50 &520198934
 Rigidbody2D:
   serializedVersion: 4
@@ -8661,7 +8634,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1330518830}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: FirePointSx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8698,7 +8671,7 @@ GameObject:
   - component: {fileID: 1403455085}
   - component: {fileID: 1403455081}
   - component: {fileID: 1403455083}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Robot
   m_TagString: Robot
   m_Icon: {fileID: 0}
@@ -8941,6 +8914,19 @@ PolygonCollider2D:
       - {x: -1.74, y: -2.3999999}
       - {x: -1.41, y: -2.09}
       - {x: -0.93, y: -1.64}
+--- !u!114 &1419854724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419854720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c37fed405d5911545a3a689573a80aa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 0.6
 --- !u!1001 &1468367327
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11778,7 +11764,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2099860971}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: FirePointDx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
