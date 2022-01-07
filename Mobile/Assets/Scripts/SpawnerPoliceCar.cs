@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class SpawnerPoliceCar : MonoBehaviour
 {
@@ -30,6 +31,9 @@ public class SpawnerPoliceCar : MonoBehaviour
         direction.x = outsideScreenRadius * Mathf.Cos(angle);
         direction.y = outsideScreenRadius * Mathf.Sin(angle);
         spawnPos += direction * spawnRadius;
+
+        //settando target della auto
+        car.GetComponent<AIDestinationSetter>().target = robot.transform;
 
         //spawn
         Instantiate(car, spawnPos, Quaternion.identity);

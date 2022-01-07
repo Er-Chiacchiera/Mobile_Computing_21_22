@@ -40,9 +40,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Mappa
+    uniqueID: 1675614095
+    locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Object
-    uniqueID: 1675614095
     locked: 0
