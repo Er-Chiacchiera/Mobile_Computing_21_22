@@ -42,14 +42,16 @@ public class RobotShooting : MonoBehaviour
         Rigidbody2D rbDx = bulletDx.GetComponent<Rigidbody2D>();
         rbDx.AddForce(firePointDx.up * bulletVelocity, ForceMode2D.Impulse);
         //setting danno proiettile destro
-        bulletDx.GetComponent<Bullet>().SetDmg(GetComponent<Robot>().dmg);
-        
-        
+        bulletDx.GetComponent<Bullet>().SetDmg(gameObject.GetComponent<Robot>().GetDmg());
+
+
+
         //sparo da sinistra
         GameObject bulletSx = Instantiate(bulletPrefab, firePointSx.position, firePointSx.rotation);
         Rigidbody2D rbSx = bulletSx.GetComponent<Rigidbody2D>();
         rbSx.AddForce(firePointSx.up * bulletVelocity, ForceMode2D.Impulse);
         //setting danno proiettile sinistro
-        bulletDx.GetComponent<Bullet>().SetDmg(GetComponent<Robot>().dmg);
+        bulletSx.GetComponent<Bullet>().SetDmg(gameObject.GetComponent<Robot>().GetDmg());
+
     }
 }

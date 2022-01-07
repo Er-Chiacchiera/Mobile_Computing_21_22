@@ -19,7 +19,12 @@ public class PoliceCar : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        //se la collisione è con un proiettile
         if (collision.gameObject.tag == "Bullet")
-            health -= collision.gameObject.GetComponent<Bullet>().GetDmg();
+        {
+            //danni proiettile
+            float dmg = collision.gameObject.GetComponent<Bullet>().GetDmg();
+            health -= dmg;
+        }
     }
 }

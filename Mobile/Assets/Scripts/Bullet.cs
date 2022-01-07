@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    //dopo quanti secondi viene distrutto in automatico
     [SerializeField]
     private float time = 3;
     private float dmg = 0;
@@ -11,6 +12,7 @@ public class Bullet : MonoBehaviour
     {
         Destroy(gameObject, time);
     }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         Destroy(gameObject);
