@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1633299854555657700}
   - component: {fileID: -3164760582857623222}
   - component: {fileID: -8189989185385889208}
+  - component: {fileID: -5974668804486066892}
   m_Layer: 0
   m_Name: PoliceCar
   m_TagString: Untagged
@@ -225,10 +226,26 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7097864515071505811}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9679e68a0f1144e79c664d9a11ca121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 0}
+--- !u!114 &-5974668804486066892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7097864515071505811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d68495903c7e1714da0f6d96adff33c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  distanzaStop: 4
+  target: {fileID: 0}
+  officer: {fileID: 1360557703968692192, guid: 8f1590a72a96a4b449ce1229acd62bb0, type: 3}
