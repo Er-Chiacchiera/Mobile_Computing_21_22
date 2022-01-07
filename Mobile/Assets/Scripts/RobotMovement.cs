@@ -5,6 +5,7 @@ using UnityEngine;
 public class RobotMovement : MonoBehaviour
 {
     public Joystick joystick;
+    [SerializeField]
     private float speed = 1.5f;
     public Rigidbody2D rigidBody;
     Vector2 movement;

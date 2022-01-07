@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Robot : MonoBehaviour
 {
-    
+    [SerializeField]
+    public float dmg = 10;
     void Start()
     {
         

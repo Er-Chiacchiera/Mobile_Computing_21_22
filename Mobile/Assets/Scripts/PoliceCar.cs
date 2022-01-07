@@ -17,9 +17,9 @@ public class PoliceCar : MonoBehaviour
         if (health <= 0) Destroy(gameObject);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        //if (collision.gameObject.name == "Bullet")
-            health -= 40;
+        if (collision.gameObject.tag == "Bullet")
+            health -= collision.gameObject.GetComponent<Bullet>().GetDmg();
     }
 }
