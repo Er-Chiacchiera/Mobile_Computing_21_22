@@ -16,11 +16,16 @@ public class RobotShooting : MonoBehaviour
 
     //firerate
     [SerializeField]
-    private float fireRate = 10f;
+    private float fireRate;
     
     //velocità proiettile
     [SerializeField]
-    public float bulletVelocity = 5f;
+    public float bulletVelocity = 5;
+
+    private void Start()
+    {
+        fireRate = gameObject.GetComponent<Robot>().GetFireRate();
+    }
 
     void Update()
     {
