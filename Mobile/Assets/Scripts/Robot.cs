@@ -6,7 +6,7 @@ public class Robot : MonoBehaviour
 {
     [SerializeField]
     private float dmg = 10;
-    private float fireRate = 10;
+    private float fireRate = 7;
     private float healthMax = 100;
     private float health;
     void Start()
