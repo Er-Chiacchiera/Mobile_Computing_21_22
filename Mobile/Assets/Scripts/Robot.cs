@@ -14,13 +14,6 @@ public class Robot : MonoBehaviour
         health = healthMax;
     }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public float GetDmg()
     {
         return dmg;

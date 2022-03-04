@@ -6,7 +6,7 @@ public class PoliceMan : MonoBehaviour
 {
     [SerializeField]
     private float dmg = 10;
-    private float fireRate = 7;
+    private float fireRate = 2;
     private float healthMax = 100;
     private float health;
     void Start()

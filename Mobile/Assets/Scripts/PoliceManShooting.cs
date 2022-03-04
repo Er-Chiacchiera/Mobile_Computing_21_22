@@ -4,67 +4,64 @@ using UnityEngine;
 
 public class PoliceManShooting : MonoBehaviour
 {
-    private Vector2 direzione;
-    public Rigidbody2D rigidBody;
-    private Transform posizioneRobot;
+    //variabili poliziotto
+    private Vector2 direction;
+    public Rigidbody2D policeMan; 
     private float angle;
+    public Transform firePoint;
+    private float fireRate;
+    
+
+    public GameObject bulletPrefab;
+    public float bulletVelocity = 5;
+
+    private GameObject robot;
+    private Transform robotPosition;
+
+    //variabile che serve per la meccanica dello sparo
+    private float lastShot;
 
     private void Start()
     {
-        //variabile transform con la posizione del robot
-        posizioneRobot = GameObject.Find("Robot").GetComponent<Transform>();
+        //variabile gameobject del robot
+        robot = GameObject.Find("Robot");
+
+        //posizione del robot (serve per la direzione in cui sparare)
+        robotPosition = robot.GetComponent<Transform>();
+
+        //prendo firerate del poliziotto
+        fireRate = gameObject.GetComponent<PoliceMan>().GetFireRate();
+        lastShot = Time.time;
     }
-    //update che calcola la direzione in cui guarda il poliziotto (senza ruotarlo)
+    private void Shoot()
+    {
+        lastShot = Time.time;
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        rb.AddForce(firePoint.up * bulletVelocity, ForceMode2D.Impulse);
+        //setting danno proiettile
+        bullet.GetComponent<Bullet>().SetDmg(gameObject.GetComponent<PoliceMan>().GetDmg());
+    }
+
+    /* update:
+     * calcola la direzione in cui guarda il poliziotto (senza ruotarlo)*/
     private void Update()
     {
-        direzione.x = posizioneRobot.position.x - rigidBody.position.x;
-        direzione.y = posizioneRobot.position.y - rigidBody.position.y;
-        angle = Mathf.Atan2(direzione.y, direzione.x) * Mathf.Rad2Deg + 90f;
+        direction.x = robotPosition.position.x - policeMan.position.x;
+        direction.y = robotPosition.position.y - policeMan.position.y;
+        angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90f;
     }
 
     //fixed update che ruota il poliziotto verso il robot
     private void FixedUpdate()
     {
-        rigidBody.rotation = angle;
+        policeMan.rotation = angle;
+
+        if (Time.time > (1f / fireRate) + lastShot)
+            Shoot();
     }
 }
 
+
 /*
- * 
- * 
-public Transform firePoint;
-
-public GameObject bulletPrefab;
-private Vector2 direzione;
-private float lastShot = 0.0f;
-
-//firerate
-[SerializeField]
-private float fireRate;
-
-//velocità proiettile
-[SerializeField]
-public float bulletVelocity = 5;
-
-private void Start()
-{
-    fireRate = gameObject.GetComponent<Robot>().GetFireRate();
-}
-
-private void FixedUpdate()
-{
-    if (Time.time > (1f / fireRate) + lastShot)
-        Shoot();
-}
-void Shoot()
-{
-    lastShot = Time.time;
-
-    //sparo da destra
-    GameObject bulletDx = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-    Rigidbody2D rbDx = bulletDx.GetComponent<Rigidbody2D>();
-    rbDx.AddForce(firePoint.up * bulletVelocity, ForceMode2D.Impulse);
-    //setting danno proiettile
-    bulletDx.GetComponent<Bullet>().SetDmg(gameObject.GetComponent<Robot>().GetDmg());
-
-}*/
+*/
