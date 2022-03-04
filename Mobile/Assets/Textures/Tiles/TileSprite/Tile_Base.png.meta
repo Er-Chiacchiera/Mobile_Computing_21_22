@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c377b3c3889cb5047b1e86a4ae7a40ad
+guid: bbc18cac803ca4247997ef7ddcceb391
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -173,15 +173,6 @@ TextureImporter:
   - first:
       213: 3965871189855183491
     second: Tile_Base_56
-  - first:
-      213: 6360236525709705564
-    second: Tile_Base_57
-  - first:
-      213: -2007624324661936521
-    second: Tile_Base_58
-  - first:
-      213: 6863678634189862244
-    second: Tile_Base_59
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -323,7 +314,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 160
+        y: 234
         width: 16
         height: 16
       alignment: 0
@@ -344,7 +335,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 144
-        y: 160
+        y: 234
         width: 16
         height: 16
       alignment: 0
@@ -364,8 +355,8 @@ TextureImporter:
       name: Tile_Base_2
       rect:
         serializedVersion: 2
-        x: 128
-        y: 144
+        x: 16
+        y: 218
         width: 16
         height: 16
       alignment: 0
@@ -385,8 +376,8 @@ TextureImporter:
       name: Tile_Base_3
       rect:
         serializedVersion: 2
-        x: 144
-        y: 144
+        x: 32
+        y: 218
         width: 16
         height: 16
       alignment: 0
@@ -406,8 +397,8 @@ TextureImporter:
       name: Tile_Base_4
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
+        x: 48
+        y: 218
         width: 16
         height: 16
       alignment: 0
@@ -427,8 +418,8 @@ TextureImporter:
       name: Tile_Base_5
       rect:
         serializedVersion: 2
-        x: 144
-        y: 128
+        x: 64
+        y: 218
         width: 16
         height: 16
       alignment: 0
@@ -449,7 +440,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 112
+        y: 218
         width: 16
         height: 16
       alignment: 0
@@ -470,7 +461,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 144
-        y: 112
+        y: 218
         width: 16
         height: 16
       alignment: 0
@@ -490,8 +481,8 @@ TextureImporter:
       name: Tile_Base_8
       rect:
         serializedVersion: 2
-        x: 0
-        y: 96
+        x: 192
+        y: 218
         width: 16
         height: 16
       alignment: 0
@@ -511,8 +502,8 @@ TextureImporter:
       name: Tile_Base_9
       rect:
         serializedVersion: 2
-        x: 64
-        y: 96
+        x: 208
+        y: 218
         width: 16
         height: 16
       alignment: 0
@@ -532,8 +523,8 @@ TextureImporter:
       name: Tile_Base_10
       rect:
         serializedVersion: 2
-        x: 80
-        y: 96
+        x: 224
+        y: 218
         width: 16
         height: 16
       alignment: 0
@@ -553,8 +544,8 @@ TextureImporter:
       name: Tile_Base_11
       rect:
         serializedVersion: 2
-        x: 96
-        y: 96
+        x: 240
+        y: 218
         width: 16
         height: 16
       alignment: 0
@@ -574,8 +565,8 @@ TextureImporter:
       name: Tile_Base_12
       rect:
         serializedVersion: 2
-        x: 112
-        y: 96
+        x: 16
+        y: 202
         width: 16
         height: 16
       alignment: 0
@@ -595,8 +586,8 @@ TextureImporter:
       name: Tile_Base_13
       rect:
         serializedVersion: 2
-        x: 128
-        y: 96
+        x: 32
+        y: 202
         width: 16
         height: 16
       alignment: 0
@@ -616,8 +607,8 @@ TextureImporter:
       name: Tile_Base_14
       rect:
         serializedVersion: 2
-        x: 144
-        y: 96
+        x: 48
+        y: 202
         width: 16
         height: 16
       alignment: 0
@@ -637,8 +628,8 @@ TextureImporter:
       name: Tile_Base_15
       rect:
         serializedVersion: 2
-        x: 176
-        y: 96
+        x: 64
+        y: 202
         width: 16
         height: 16
       alignment: 0
@@ -658,8 +649,8 @@ TextureImporter:
       name: Tile_Base_16
       rect:
         serializedVersion: 2
-        x: 208
-        y: 96
+        x: 128
+        y: 202
         width: 16
         height: 16
       alignment: 0
@@ -679,8 +670,8 @@ TextureImporter:
       name: Tile_Base_17
       rect:
         serializedVersion: 2
-        x: 224
-        y: 96
+        x: 144
+        y: 202
         width: 16
         height: 16
       alignment: 0
@@ -700,8 +691,8 @@ TextureImporter:
       name: Tile_Base_18
       rect:
         serializedVersion: 2
-        x: 240
-        y: 96
+        x: 192
+        y: 202
         width: 16
         height: 16
       alignment: 0
@@ -721,8 +712,8 @@ TextureImporter:
       name: Tile_Base_19
       rect:
         serializedVersion: 2
-        x: 256
-        y: 96
+        x: 208
+        y: 202
         width: 16
         height: 16
       alignment: 0
@@ -742,8 +733,8 @@ TextureImporter:
       name: Tile_Base_20
       rect:
         serializedVersion: 2
-        x: 64
-        y: 80
+        x: 224
+        y: 202
         width: 16
         height: 16
       alignment: 0
@@ -763,8 +754,8 @@ TextureImporter:
       name: Tile_Base_21
       rect:
         serializedVersion: 2
-        x: 80
-        y: 80
+        x: 240
+        y: 202
         width: 16
         height: 16
       alignment: 0
@@ -784,8 +775,8 @@ TextureImporter:
       name: Tile_Base_22
       rect:
         serializedVersion: 2
-        x: 96
-        y: 80
+        x: 128
+        y: 186
         width: 16
         height: 16
       alignment: 0
@@ -805,8 +796,8 @@ TextureImporter:
       name: Tile_Base_23
       rect:
         serializedVersion: 2
-        x: 112
-        y: 80
+        x: 144
+        y: 186
         width: 16
         height: 16
       alignment: 0
@@ -826,8 +817,8 @@ TextureImporter:
       name: Tile_Base_24
       rect:
         serializedVersion: 2
-        x: 128
-        y: 80
+        x: 80
+        y: 154
         width: 16
         height: 16
       alignment: 0
@@ -847,8 +838,8 @@ TextureImporter:
       name: Tile_Base_25
       rect:
         serializedVersion: 2
-        x: 144
-        y: 80
+        x: 96
+        y: 154
         width: 16
         height: 16
       alignment: 0
@@ -868,8 +859,8 @@ TextureImporter:
       name: Tile_Base_26
       rect:
         serializedVersion: 2
-        x: 176
-        y: 80
+        x: 48
+        y: 138
         width: 16
         height: 16
       alignment: 0
@@ -889,8 +880,8 @@ TextureImporter:
       name: Tile_Base_27
       rect:
         serializedVersion: 2
-        x: 208
-        y: 80
+        x: 80
+        y: 138
         width: 16
         height: 16
       alignment: 0
@@ -910,8 +901,8 @@ TextureImporter:
       name: Tile_Base_28
       rect:
         serializedVersion: 2
-        x: 224
-        y: 80
+        x: 96
+        y: 138
         width: 16
         height: 16
       alignment: 0
@@ -931,8 +922,8 @@ TextureImporter:
       name: Tile_Base_29
       rect:
         serializedVersion: 2
-        x: 240
-        y: 80
+        x: 80
+        y: 122
         width: 16
         height: 16
       alignment: 0
@@ -952,8 +943,8 @@ TextureImporter:
       name: Tile_Base_30
       rect:
         serializedVersion: 2
-        x: 256
-        y: 80
+        x: 96
+        y: 122
         width: 16
         height: 16
       alignment: 0
@@ -973,8 +964,8 @@ TextureImporter:
       name: Tile_Base_31
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
+        x: 80
+        y: 106
         width: 16
         height: 16
       alignment: 0
@@ -994,8 +985,8 @@ TextureImporter:
       name: Tile_Base_32
       rect:
         serializedVersion: 2
-        x: 128
-        y: 64
+        x: 96
+        y: 106
         width: 16
         height: 16
       alignment: 0
@@ -1015,8 +1006,8 @@ TextureImporter:
       name: Tile_Base_33
       rect:
         serializedVersion: 2
-        x: 144
-        y: 64
+        x: 16
+        y: 90
         width: 16
         height: 16
       alignment: 0
@@ -1036,8 +1027,8 @@ TextureImporter:
       name: Tile_Base_34
       rect:
         serializedVersion: 2
-        x: 176
-        y: 64
+        x: 32
+        y: 90
         width: 16
         height: 16
       alignment: 0
@@ -1057,8 +1048,8 @@ TextureImporter:
       name: Tile_Base_35
       rect:
         serializedVersion: 2
-        x: 32
-        y: 48
+        x: 16
+        y: 74
         width: 16
         height: 16
       alignment: 0
@@ -1078,8 +1069,8 @@ TextureImporter:
       name: Tile_Base_36
       rect:
         serializedVersion: 2
-        x: 48
-        y: 48
+        x: 32
+        y: 74
         width: 16
         height: 16
       alignment: 0
@@ -1099,8 +1090,8 @@ TextureImporter:
       name: Tile_Base_37
       rect:
         serializedVersion: 2
-        x: 64
-        y: 48
+        x: 16
+        y: 58
         width: 16
         height: 16
       alignment: 0
@@ -1120,8 +1111,8 @@ TextureImporter:
       name: Tile_Base_38
       rect:
         serializedVersion: 2
-        x: 80
-        y: 48
+        x: 32
+        y: 58
         width: 16
         height: 16
       alignment: 0
@@ -1141,8 +1132,8 @@ TextureImporter:
       name: Tile_Base_39
       rect:
         serializedVersion: 2
-        x: 208
-        y: 48
+        x: 144
+        y: 42
         width: 16
         height: 16
       alignment: 0
@@ -1162,8 +1153,8 @@ TextureImporter:
       name: Tile_Base_40
       rect:
         serializedVersion: 2
-        x: 224
-        y: 48
+        x: 176
+        y: 42
         width: 16
         height: 16
       alignment: 0
@@ -1183,8 +1174,8 @@ TextureImporter:
       name: Tile_Base_41
       rect:
         serializedVersion: 2
-        x: 240
-        y: 48
+        x: 208
+        y: 42
         width: 16
         height: 16
       alignment: 0
@@ -1204,8 +1195,8 @@ TextureImporter:
       name: Tile_Base_42
       rect:
         serializedVersion: 2
-        x: 32
-        y: 32
+        x: 224
+        y: 42
         width: 16
         height: 16
       alignment: 0
@@ -1225,8 +1216,8 @@ TextureImporter:
       name: Tile_Base_43
       rect:
         serializedVersion: 2
-        x: 48
-        y: 32
+        x: 240
+        y: 42
         width: 16
         height: 16
       alignment: 0
@@ -1246,8 +1237,8 @@ TextureImporter:
       name: Tile_Base_44
       rect:
         serializedVersion: 2
-        x: 64
-        y: 32
+        x: 48
+        y: 26
         width: 16
         height: 16
       alignment: 0
@@ -1267,8 +1258,8 @@ TextureImporter:
       name: Tile_Base_45
       rect:
         serializedVersion: 2
-        x: 80
-        y: 32
+        x: 64
+        y: 26
         width: 16
         height: 16
       alignment: 0
@@ -1288,8 +1279,8 @@ TextureImporter:
       name: Tile_Base_46
       rect:
         serializedVersion: 2
-        x: 128
-        y: 32
+        x: 80
+        y: 26
         width: 16
         height: 16
       alignment: 0
@@ -1310,7 +1301,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 144
-        y: 32
+        y: 26
         width: 16
         height: 16
       alignment: 0
@@ -1330,8 +1321,8 @@ TextureImporter:
       name: Tile_Base_48
       rect:
         serializedVersion: 2
-        x: 160
-        y: 32
+        x: 176
+        y: 26
         width: 16
         height: 16
       alignment: 0
@@ -1351,8 +1342,8 @@ TextureImporter:
       name: Tile_Base_49
       rect:
         serializedVersion: 2
-        x: 208
-        y: 32
+        x: 48
+        y: 10
         width: 16
         height: 16
       alignment: 0
@@ -1372,8 +1363,8 @@ TextureImporter:
       name: Tile_Base_50
       rect:
         serializedVersion: 2
-        x: 224
-        y: 32
+        x: 64
+        y: 10
         width: 16
         height: 16
       alignment: 0
@@ -1393,8 +1384,8 @@ TextureImporter:
       name: Tile_Base_51
       rect:
         serializedVersion: 2
-        x: 240
-        y: 32
+        x: 80
+        y: 10
         width: 16
         height: 16
       alignment: 0
@@ -1414,8 +1405,8 @@ TextureImporter:
       name: Tile_Base_52
       rect:
         serializedVersion: 2
-        x: 32
-        y: 16
+        x: 144
+        y: 10
         width: 16
         height: 16
       alignment: 0
@@ -1435,8 +1426,8 @@ TextureImporter:
       name: Tile_Base_53
       rect:
         serializedVersion: 2
-        x: 48
-        y: 16
+        x: 176
+        y: 10
         width: 16
         height: 16
       alignment: 0
@@ -1456,8 +1447,8 @@ TextureImporter:
       name: Tile_Base_54
       rect:
         serializedVersion: 2
-        x: 64
-        y: 16
+        x: 208
+        y: 10
         width: 16
         height: 16
       alignment: 0
@@ -1477,8 +1468,8 @@ TextureImporter:
       name: Tile_Base_55
       rect:
         serializedVersion: 2
-        x: 80
-        y: 16
+        x: 224
+        y: 10
         width: 16
         height: 16
       alignment: 0
@@ -1498,8 +1489,8 @@ TextureImporter:
       name: Tile_Base_56
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
+        x: 240
+        y: 10
         width: 16
         height: 16
       alignment: 0
@@ -1511,69 +1502,6 @@ TextureImporter:
       bones: []
       spriteID: 3822648c5da990730800000000000000
       internalID: 3965871189855183491
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Tile_Base_57
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c5144621c69144850800000000000000
-      internalID: 6360236525709705564
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Tile_Base_58
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 77e7716405c7324e0800000000000000
-      internalID: -2007624324661936521
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Tile_Base_59
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 465335b3a5fa04f50800000000000000
-      internalID: 6863678634189862244
       vertices: []
       indices: 
       edges: []
