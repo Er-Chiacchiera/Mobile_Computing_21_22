@@ -49,7 +49,7 @@ public class PoliceManShooting : MonoBehaviour
     {
         direction.x = robotPosition.position.x - policeMan.position.x;
         direction.y = robotPosition.position.y - policeMan.position.y;
-        angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90f;
+        angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
     }
 
     //fixed update che ruota il poliziotto verso il robot
