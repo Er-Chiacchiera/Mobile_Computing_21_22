@@ -12,12 +12,11 @@ public class Bullet : MonoBehaviour
     {
         Destroy(gameObject, time);
     }
-
-    /*void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag != "Robot" && collision.gameObject.tag != "Bullet")
+        if (collision.gameObject.tag != "Robot" && collision.gameObject.tag != "Bullet" && collision.gameObject.tag != "BulletEnemy")
             Destroy(gameObject);
-    }*/
+    }
 
     public void SetDmg(float d)
     {

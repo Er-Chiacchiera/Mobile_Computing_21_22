@@ -13,7 +13,7 @@ public class BulletPoliceMan : MonoBehaviour
         Destroy(gameObject, time);
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag != "Enemy" && collision.gameObject.tag != "Bullet" && collision.gameObject.tag != "BulletEnemy")
             Destroy(gameObject);
