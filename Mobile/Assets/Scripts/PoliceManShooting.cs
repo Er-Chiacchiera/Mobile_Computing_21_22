@@ -10,7 +10,7 @@ public class PoliceManShooting : MonoBehaviour
     private float angle;
     public Transform firePoint;
     private float fireRate;
-    
+    public Animator animator;
 
     public GameObject bulletPrefab;
     public float bulletVelocity = 5;
@@ -35,6 +35,7 @@ public class PoliceManShooting : MonoBehaviour
     }
     private void Shoot()
     {
+        animator.SetTrigger("Shoot");
         lastShot = Time.time;
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();

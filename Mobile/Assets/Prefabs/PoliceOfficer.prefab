@@ -169,6 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   policeMan: {fileID: 7963374897363076874}
   firePoint: {fileID: 3978522512030025793}
+  animator: {fileID: 5669753654235546649}
   bulletPrefab: {fileID: 4026332307625284837, guid: 7002e574437878841ad740b07ce3df0e, type: 3}
   bulletVelocity: 5
 --- !u!114 &-1232912791460076031
