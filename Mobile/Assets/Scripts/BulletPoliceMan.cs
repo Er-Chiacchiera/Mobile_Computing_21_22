@@ -15,7 +15,7 @@ public class BulletPoliceMan : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag != "Enemy" && collision.gameObject.tag != "Bullet")
+        if (collision.gameObject.tag != "Enemy" && collision.gameObject.tag != "Bullet" && collision.gameObject.tag != "BulletEnemy")
             Destroy(gameObject);
     }
 
