@@ -12,7 +12,7 @@ public class PoliceCar : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //se la collisione è con un proiettile
+        //se la collisione è con un proiettile del robot
         if (collision.gameObject.tag == "Bullet")
         {
             //danni proiettile
