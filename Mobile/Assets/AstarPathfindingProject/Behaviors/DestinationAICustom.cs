@@ -22,7 +22,7 @@ namespace Pathfinding
 		public Transform target;
 		IAstarAI ai;
 		public GameObject officer;
-
+		public Animator animator;
 		void OnEnable()
 		{
 			ai = GetComponent<IAstarAI>();
@@ -65,6 +65,8 @@ namespace Pathfinding
 
 			if (distanza <= distanzaStop)
             {
+				animator.SetTrigger("Open");
+
 				Vector3 spawnPos = gameObject.GetComponent<Transform>().position;
 				float rot = gameObject.GetComponent<Rigidbody2D>().rotation;
 
@@ -75,7 +77,7 @@ namespace Pathfinding
 				Instantiate(officer, spawnPos, new Quaternion(0,0,rot,0));
 				ai.destination = gameObject.GetComponent<Transform>().position;
 				enabled = false;
-            }
+			}
 		}
 	}
 }
