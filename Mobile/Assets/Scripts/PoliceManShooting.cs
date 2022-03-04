@@ -40,7 +40,7 @@ public class PoliceManShooting : MonoBehaviour
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(firePoint.up * bulletVelocity, ForceMode2D.Impulse);
         //setting danno proiettile
-        bullet.GetComponent<Bullet>().SetDmg(gameObject.GetComponent<PoliceMan>().GetDmg());
+        bullet.GetComponent<BulletPoliceMan>().SetDmg(gameObject.GetComponent<PoliceMan>().GetDmg());
     }
 
     /* update:
