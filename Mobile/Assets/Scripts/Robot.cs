@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class Robot : MonoBehaviour
 {
-    [SerializeField]
     private float dmg = 10;
     private float fireRate = 7;
-    private float healthMax = 100;
+    private float maxHealth = 100;
     private float health;
+
+    public HealthBar healthBar;
+
     void Start()
     {
-        health = healthMax;
+        health = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+        healthBar.SetHealth(maxHealth);
     }
 
     public float GetDmg()
@@ -26,8 +30,29 @@ public class Robot : MonoBehaviour
 
     public void RestoreHp20()
     {
-        health += healthMax * 0.2f;
-        if (health > healthMax)
-            health = healthMax;
+        health += maxHealth * 0.2f;
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+        healthBar.SetHealth(health);
+    }
+
+    public bool fullHealth()
+    {
+        return health == maxHealth;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //se la collisione è con un proiettile nemico
+        if (collision.gameObject.tag == "BulletEnemy")
+        {
+            //danni proiettile
+            float dmg = collision.gameObject.GetComponent<BulletEnemy>().GetDmg();
+            health -= dmg;
+            healthBar.SetHealth(health);
+            //if (health <= 0) Destroy(gameObject);
+        }
     }
 }

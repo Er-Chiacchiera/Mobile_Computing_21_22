@@ -41,7 +41,7 @@ public class PoliceManShooting : MonoBehaviour
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(firePoint.up * bulletVelocity, ForceMode2D.Impulse);
         //setting danno proiettile
-        bullet.GetComponent<BulletPoliceMan>().SetDmg(gameObject.GetComponent<PoliceMan>().GetDmg());
+        bullet.GetComponent<BulletEnemy>().SetDmg(gameObject.GetComponent<PoliceMan>().GetDmg());
     }
 
     /* update:
@@ -50,7 +50,7 @@ public class PoliceManShooting : MonoBehaviour
     {
         direction.x = robotPosition.position.x - policeMan.position.x;
         direction.y = robotPosition.position.y - policeMan.position.y;
-        angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90f;
+        angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
     }
 
     //fixed update che ruota il poliziotto verso il robot

@@ -10,21 +10,15 @@ public class PoliceCar : MonoBehaviour
     {
         health = 100;
     }
-
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (health <= 0) Destroy(gameObject);
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        //se la collisione è con un proiettile
+        //se la collisione è con un proiettile del robot
         if (collision.gameObject.tag == "Bullet")
         {
             //danni proiettile
             float dmg = collision.gameObject.GetComponent<Bullet>().GetDmg();
             health -= dmg;
+            if (health <= 0) Destroy(gameObject);
         }
     }
 }

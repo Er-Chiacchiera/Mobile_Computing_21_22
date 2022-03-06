@@ -14,8 +14,13 @@ public class Wrench : MonoBehaviour
     {
         if (collision.gameObject.tag == "Robot")
         {
-            Destroy(gameObject);
-            collision.gameObject.GetComponent<Robot>().RestoreHp20();
+            GameObject robot = collision.gameObject;
+
+            if (!robot.GetComponent<Robot>().fullHealth())
+            {
+                Destroy(gameObject);
+                collision.gameObject.GetComponent<Robot>().RestoreHp20();
+            }
         }
     }
 }
