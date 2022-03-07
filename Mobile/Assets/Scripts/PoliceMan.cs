@@ -8,6 +8,8 @@ public class PoliceMan : MonoBehaviour
     private float fireRate = 1;
     private float healthMax = 100;
     private float health;
+    public Animator animator;
+
     void Start()
     {
         health = healthMax;
@@ -22,7 +24,8 @@ public class PoliceMan : MonoBehaviour
             health -= dmg;
             if (health <= 0)
             {
-                Destroy(gameObject);
+                animator.SetTrigger("Death");
+                //Destroy(gameObject);
             }
         }
     }
