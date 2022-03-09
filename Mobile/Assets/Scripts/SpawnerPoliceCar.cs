@@ -33,7 +33,7 @@ public class SpawnerPoliceCar : MonoBehaviour
         spawnPos += direction * spawnRadius;
 
         //settando target della auto
-        car.GetComponent<DestinationAICustom>().target = robot.GetComponent<Transform>();
+       // car.GetComponent<DestinationAICustom>().target = robot.GetComponent<Transform>();
 
         //spawn
         Instantiate(car, spawnPos, Quaternion.identity);

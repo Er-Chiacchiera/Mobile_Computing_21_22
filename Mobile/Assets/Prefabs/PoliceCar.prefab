@@ -10,14 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 7097864515071505809}
   - component: {fileID: 7097864515071505810}
-  - component: {fileID: 8894005831765413}
   - component: {fileID: 7097864515071505808}
   - component: {fileID: 948691392659394251}
   - component: {fileID: 1633299854555657700}
   - component: {fileID: -3164760582857623222}
-  - component: {fileID: -8189989185385889208}
   - component: {fileID: -5974668804486066892}
   - component: {fileID: 2108944154723011956}
+  - component: {fileID: 4037319997693128232}
   m_Layer: 0
   m_Name: PoliceCar
   m_TagString: Enemy
@@ -90,19 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8894005831765413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7097864515071505811}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87c9753233a891342b19b48a1168bd44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
 --- !u!61 &7097864515071505808
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -220,20 +206,6 @@ MonoBehaviour:
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
   constrainInsideGraph: 0
---- !u!114 &-8189989185385889208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7097864515071505811}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9679e68a0f1144e79c664d9a11ca121, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  target: {fileID: 0}
 --- !u!114 &-5974668804486066892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,3 +242,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4037319997693128232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7097864515071505811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90713a659ba34f6499c4bb5aa5315ffd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidBody: {fileID: 948691392659394251}
+  healthBar: {fileID: 0}
+  animator: {fileID: 2108944154723011956}
+  firePoints: []
+  bulletPrefab: {fileID: 0}
+  bulletVelocity: 0

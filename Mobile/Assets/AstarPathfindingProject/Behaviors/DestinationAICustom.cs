@@ -19,8 +19,8 @@ namespace Pathfinding
 		[SerializeField]
 		private float distanzaStop = 10;
 		/// <summary>The object that the AI should move to</summary>
-		public Transform target;
 		IAstarAI ai;
+		private GameObject player;
 		public GameObject officer;
 		public Animator animator;
 		void OnEnable()
@@ -38,12 +38,18 @@ namespace Pathfinding
 			if (ai != null) ai.onSearchPath -= Update;
 		}
 
-		/// <summary>Updates the AI's destination every frame</summary>
-		void Update()
+        private void Start()
+        {
+			player = GameObject.Find("Robot");
+		}
+
+
+        /// <summary>Updates the AI's destination every frame</summary>
+        void Update()
 		{
 			//calcolo distanza auto-robot
-			float distanzaX = (gameObject.transform.position.x - target.position.x);
-			float distanzaY = (gameObject.transform.position.y - target.position.y);
+			float distanzaX = (gameObject.transform.position.x - player.GetComponent<Transform>().position.x);
+			float distanzaY = (gameObject.transform.position.y - player.GetComponent<Transform>().position.y);
 			float distanza = Mathf.Sqrt(distanzaX * distanzaX + distanzaY * distanzaY);
 
 			/*if (distanza > distanzaStop && !arrived)
@@ -61,7 +67,7 @@ namespace Pathfinding
 				
             }*/
 
-			if (target != null && ai != null) ai.destination = target.position;
+			if (player.GetComponent<Transform>().position != null && ai != null) ai.destination = player.GetComponent<Transform>().position;
 
 			if (distanza <= distanzaStop)
             {
@@ -75,7 +81,7 @@ namespace Pathfinding
 				spawnPos.x = spawnPos.x + dis * Mathf.Cos(rot*Mathf.Deg2Rad);
 				spawnPos.y = spawnPos.y + dis * Mathf.Sin(rot*Mathf.Deg2Rad);
 				Instantiate(officer, spawnPos, new Quaternion(0,0,rot,0));
-				ai.destination = gameObject.GetComponent<Transform>().position;
+				ai.destination = player.GetComponent<Transform>().position;
 				enabled = false;
 			}
 		}
