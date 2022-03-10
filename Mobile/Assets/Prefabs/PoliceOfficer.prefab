@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 6822329937014819366}
   - component: {fileID: 3523856746930776600}
   - component: {fileID: 5669753654235546649}
-  - component: {fileID: 4072311472012048272}
-  - component: {fileID: -1232912791460076031}
+  - component: {fileID: 3547583156433631598}
   m_Layer: 0
   m_Name: PoliceOfficer
   m_TagString: Enemy
@@ -155,7 +154,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4072311472012048272
+--- !u!114 &3547583156433631598
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,27 +163,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1360557703968692192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9096e5995517544d8d2870c0cf7c3a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b23e2c5171b720439608fc3c23d52ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  policeMan: {fileID: 7963374897363076874}
-  firePoint: {fileID: 3978522512030025793}
+  rigidBody: {fileID: 7963374897363076874}
+  healthBar: {fileID: 0}
   animator: {fileID: 5669753654235546649}
+  firePoints:
+  - {fileID: 3978522512030025793}
   bulletPrefab: {fileID: 4026332307625284837, guid: 7002e574437878841ad740b07ce3df0e, type: 3}
   bulletVelocity: 5
---- !u!114 &-1232912791460076031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1360557703968692192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8085db95e0ffd7a4489b85090303920c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 5669753654235546649}
 --- !u!1 &2517399449330043996
 GameObject:
   m_ObjectHideFlags: 0
