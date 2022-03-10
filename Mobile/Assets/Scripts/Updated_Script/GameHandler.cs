@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class GameHandler : MonoBehaviour
 {
@@ -10,11 +11,20 @@ public class GameHandler : MonoBehaviour
     private Entity player;
     private List<Entity> enemies;
 
-    
+    [SerializeField]
+    private float spawnRadius = 7;
+    [SerializeField]
+    private float spawnRate = 0.3f;
+
+    public GameObject car;
+    public GameObject robot;
+    private float outsideScreenRadius = 2;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        player = new Player(10, 7, 100, 1.5f);
+        StartCoroutine(SpawnPoliceCar(car));
     }
 
     // Update is called once per frame
@@ -31,5 +41,28 @@ public class GameHandler : MonoBehaviour
 
     public void setPlayer(Entity value) { this.player = value; }
     public Entity getPlayer() { return this.player; }
+
+    IEnumerator SpawnPoliceCar(GameObject enemy)
+    {
+        //posizione robot
+        Vector2 spawnPos = robot.transform.position;
+
+        //direzione spawn rispetto al robot
+        Vector2 direction = Random.insideUnitCircle.normalized;
+
+        //spostando lo spawn fuori dallo schermo
+        float angle = Mathf.Atan2(direction.y, direction.x);
+        direction.x = outsideScreenRadius * Mathf.Cos(angle);
+        direction.y = outsideScreenRadius * Mathf.Sin(angle);
+        spawnPos += direction * spawnRadius;
+
+        //settando target della auto
+        // car.GetComponent<DestinationAICustom>().target = robot.GetComponent<Transform>();
+
+        //spawn
+        Instantiate(enemy, spawnPos, Quaternion.identity);
+        yield return new WaitForSeconds(1 / spawnRate);
+        StartCoroutine(SpawnPoliceCar(enemy));
+    }
 
 }
