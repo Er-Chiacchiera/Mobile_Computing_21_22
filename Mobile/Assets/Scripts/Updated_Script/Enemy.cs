@@ -7,7 +7,7 @@ public class Enemy : Entity //problema parzialmente risolto: ci sono nemici che 
     public Animator animator;
 
 
-    public Enemy(float dmg, float fireRate, float maxHealth, float speed, int id) : base(dmg, fireRate, maxHealth, speed, id)
+    public Enemy(float dmg, float fireRate, float maxHealth, float speed) : base(dmg, fireRate, maxHealth, speed)
     {
     }
 
