@@ -5,20 +5,20 @@ using UnityEngine;
 public abstract class Shooter : Enemy
 {
 
-    private GameObject target;
-    private Transform targetPosition;
+    protected GameObject target;
+    protected Transform targetPosition;
     private Vector2 direction;
     private float angle;
     public List<Transform> firePoints;
     public GameObject bulletPrefab;
 
+
     private float lastShot;
 
 
-    public Shooter(float dmg, float fireRate, float maxHealth, float speed, int id) : base (dmg, fireRate, maxHealth, speed, id)
+    public Shooter(float dmg, float fireRate, float maxHealth, float speed) : base (dmg, fireRate, maxHealth, speed)
     {
-        target = GameObject.Find("Robot");
-        targetPosition = target.GetComponent<Transform>();
+        
         lastShot = Time.time;
     }
 
@@ -39,10 +39,10 @@ public abstract class Shooter : Enemy
         lastShot = Time.time;
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(firePoint.up * bullet.GetComponent<Bullet>().bulletVelocity, ForceMode2D.Impulse);
         //setting danno proiettile
         bullet.GetComponent<Bullet>().SetDmg(base.getDmg()); //proprietaria della classe bullet
         bullet.GetComponent<Bullet>().SetId(base.getId());
-
+        rb.AddForce(firePoint.up * bullet.GetComponent<Bullet>().bulletVelocity, ForceMode2D.Impulse);
+        Debug.Log(base.getId());
     }
 }

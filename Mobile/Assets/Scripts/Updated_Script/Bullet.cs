@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private float time = 3;
     private float dmg = 30;
-    public float bulletVelocity;
+    public float bulletVelocity = 4;
     private int id;
 
     public Bullet(float time, float dmg, GameObject bullet, int id)
@@ -22,10 +22,21 @@ public class Bullet : MonoBehaviour
     {
         Destroy(gameObject, time);
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag != "Robot" && collision.gameObject.tag != "Bullet" )
-            Destroy(gameObject);
+        if (id != 0)
+        {
+            if (collision.gameObject.tag != "Enemy" && collision.gameObject.tag != "Bullet")
+                Destroy(gameObject);
+        }
+        else //id = 0
+        {
+            if (collision.gameObject.tag != "Robot" && collision.gameObject.tag != "Bullet")
+                Destroy(gameObject);
+        }
+        Debug.Log(id);
+        Debug.Log(dmg);
     }
 
     public void SetDmg(float value)

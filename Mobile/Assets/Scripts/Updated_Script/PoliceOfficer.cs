@@ -6,14 +6,16 @@ public class PoliceOfficer : Shooter
 {
     static int id = 2;
 
-    public PoliceOfficer() : base(10, 1, 100, 1.5f, id)
+    public PoliceOfficer() : base(10, 1, 100, 1.5f)
     {
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        base.setId(id);
+        target = GameObject.Find("Robot");
+        targetPosition = target.GetComponent<Transform>();
     }
 
     // Update is called once per frame

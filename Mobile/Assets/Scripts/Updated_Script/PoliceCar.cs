@@ -6,14 +6,14 @@ public class PoliceCar : Enemy
 {
     static int id = 1;
 
-    public PoliceCar() : base(0, 7, 100, 1.5f, id) 
+    public PoliceCar() : base(0, 7, 100, 1.5f) 
     {
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        base.setId(id);
     }
 
     // Update is called once per frame

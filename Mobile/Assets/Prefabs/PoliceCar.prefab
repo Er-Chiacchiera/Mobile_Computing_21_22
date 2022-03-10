@@ -220,7 +220,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   distanzaStop: 4
-  target: {fileID: 0}
   officer: {fileID: 1360557703968692192, guid: 8f1590a72a96a4b449ce1229acd62bb0, type: 3}
   animator: {fileID: 2108944154723011956}
 --- !u!95 &2108944154723011956
@@ -257,6 +256,3 @@ MonoBehaviour:
   rigidBody: {fileID: 948691392659394251}
   healthBar: {fileID: 0}
   animator: {fileID: 2108944154723011956}
-  firePoints: []
-  bulletPrefab: {fileID: 0}
-  bulletVelocity: 0

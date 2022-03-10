@@ -29,19 +29,19 @@ public class Player : Entity
     public float bulletVelocity = 5;
 
 
-    public Player() : base(10, 7, 100, 1.5f, id)
+    public Player() : base(10, 7, 100, 1.5f)
     {
         //altre cose qui
     }
 
-    public Player(float dmg, float fireRate, float maxHealth, float speed) : base(dmg, fireRate, maxHealth, speed, id)
+    public Player(float dmg, float fireRate, float maxHealth, float speed) : base(dmg, fireRate, maxHealth, speed)
     {
         //altre cose qui
     }
 
     void Start()
     {
-
+        base.setId(id);
     }
 
     void Update()

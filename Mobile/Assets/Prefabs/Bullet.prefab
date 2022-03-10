@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 5
+  bulletVelocity: 4
 --- !u!61 &3181670593184391279
 BoxCollider2D:
   m_ObjectHideFlags: 0

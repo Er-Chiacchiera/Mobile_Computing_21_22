@@ -18,7 +18,7 @@ public class Entity : MonoBehaviour
     private int id;
 
     //Costruttore
-    public Entity(float dmg, float fireRate, float maxHealth, float speed, int id)
+    public Entity(float dmg, float fireRate, float maxHealth, float speed)
     {
         this.dmg = dmg;
         this.fireRate = fireRate;
@@ -30,7 +30,6 @@ public class Entity : MonoBehaviour
         healthBar.SetHealth(maxHealth);
 
         //this.isDead = false;
-        this.id = id;
     }
 
 
@@ -55,6 +54,8 @@ public class Entity : MonoBehaviour
     public Rigidbody2D getBody() { return this.rigidBody; }
 
     public int getId() { return id; }
+
+    public void setId(int value) { this.id = value; }
 
     private void OnTriggerEnter2D(Collider2D collision) //valutare lo spostamento
     {
