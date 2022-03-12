@@ -9,6 +9,7 @@ public class Entity : MonoBehaviour
     private float maxHealth;
     private float health;
     //private bool isDead;
+    protected float lerpTimer; //serve per la health bar del player
 
     private float speed;
     public Rigidbody2D rigidBody;
@@ -26,8 +27,8 @@ public class Entity : MonoBehaviour
         this.health = maxHealth;
         this.speed = speed;
 
-        healthBar.SetMaxHealth(maxHealth);
-        healthBar.SetHealth(maxHealth);
+        //healthBar.SetMaxHealth(maxHealth);
+        //healthBar.SetHealth(maxHealth);
 
         //this.isDead = false;
     }
@@ -65,9 +66,8 @@ public class Entity : MonoBehaviour
             //danni proiettile
             float currDmg = collision.gameObject.GetComponent<Bullet>().GetDmg();
             this.subHealth(currDmg);
-            Debug.Log(health);
             healthBar.SetHealth(this.health);
-     
+            lerpTimer = 0f;
         }
     }
 
