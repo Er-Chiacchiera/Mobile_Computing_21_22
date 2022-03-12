@@ -14,9 +14,12 @@ public class GameHandler : MonoBehaviour
     [SerializeField]
     private float spawnRadius = 7;
     [SerializeField]
-    private float spawnRate = 0.3f;
+    private float carSpawnRate = 0.3f;
+    [SerializeField]
+    private float helicopterSpawnRate = 0.3f;
 
     public GameObject car;
+    public GameObject helicopter;
     public GameObject robot;
     private float outsideScreenRadius = 2;
 
@@ -24,7 +27,8 @@ public class GameHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(SpawnPoliceCar(car));
+        StartCoroutine(Spawn(car, carSpawnRate));
+        //StartCoroutine(Spawn(helicopter, helicopterSpawnRate));
     }
 
     // Update is called once per frame
@@ -42,7 +46,7 @@ public class GameHandler : MonoBehaviour
     public void setPlayer(Entity value) { this.player = value; }
     public Entity getPlayer() { return this.player; }
 
-    IEnumerator SpawnPoliceCar(GameObject enemy)
+    IEnumerator Spawn(GameObject enemy, float spawnRate)
     {
         //posizione robot
         Vector2 spawnPos = robot.transform.position;
@@ -62,7 +66,7 @@ public class GameHandler : MonoBehaviour
         //spawn
         Instantiate(enemy, spawnPos, Quaternion.identity);
         yield return new WaitForSeconds(1 / spawnRate);
-        StartCoroutine(SpawnPoliceCar(enemy));
+        StartCoroutine(Spawn(enemy, spawnRate));
     }
 
 }

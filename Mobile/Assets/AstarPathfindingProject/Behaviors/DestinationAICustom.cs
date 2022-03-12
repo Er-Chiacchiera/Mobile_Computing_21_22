@@ -21,24 +21,18 @@ namespace Pathfinding
 		/// <summary>The object that the AI should move to</summary>
 		IAstarAI ai;
 		private GameObject player;
-		public GameObject officer;
+		public GameObject spawnSubject;
 		public Animator animator;
-		void OnEnable()
-		{
-			ai = GetComponent<IAstarAI>();
-			// Update the destination right before searching for a path as well.
-			// This is enough in theory, but this script will also update the destination every
-			// frame as the destination is used for debugging and may be used for other things by other
-			// scripts as well. So it makes sense that it is up to date every frame.
-			if (ai != null) ai.onSearchPath += Update;
-		}
+		public bool isSpawner;
 
-		void OnDisable()
-		{
-			if (ai != null) ai.onSearchPath -= Update;
-		}
+		[SerializeField]
+		private int maxSpawn = 0;
+		private int currSpawn = 0;
+		private float nextSpawnTime = 0.0f;
+		[SerializeField]
+		private float spawnRate = 5.0f;
 
-        private void Start()
+		private void Start()
         {
 			player = GameObject.Find("Robot");
 		}
@@ -68,22 +62,46 @@ namespace Pathfinding
             }*/
 
 			if (player.GetComponent<Transform>().position != null && ai != null) ai.destination = player.GetComponent<Transform>().position;
+			
 
 			if (distanza <= distanzaStop)
             {
-				animator.SetTrigger("Open");
 
-				Vector3 spawnPos = gameObject.GetComponent<Transform>().position;
-				float rot = gameObject.GetComponent<Rigidbody2D>().rotation;
 
-				
-				float dis = 1;
-				spawnPos.x = spawnPos.x + dis * Mathf.Cos(rot*Mathf.Deg2Rad);
-				spawnPos.y = spawnPos.y + dis * Mathf.Sin(rot*Mathf.Deg2Rad);
-				Instantiate(officer, spawnPos, new Quaternion(0,0,rot,0));
-				ai.destination = player.GetComponent<Transform>().position;
-				enabled = false;
+                if (isSpawner && currSpawn < maxSpawn && Time.time > nextSpawnTime)
+                {
+					//aggiorno il timer
+					nextSpawnTime = Time.time + spawnRate;
+
+					animator.SetTrigger("Open");
+					currSpawn += 1;
+
+					Vector3 spawnPos = gameObject.GetComponent<Transform>().position;
+					float rot = gameObject.GetComponent<Rigidbody2D>().rotation;
+
+					float dis = 1;
+					spawnPos.x = spawnPos.x + dis * Mathf.Cos(rot * Mathf.Deg2Rad);
+					spawnPos.y = spawnPos.y + dis * Mathf.Sin(rot * Mathf.Deg2Rad);
+					Instantiate(spawnSubject, spawnPos, new Quaternion(0, 0, rot, 0));
+				}
+
+				this.ai.isStopped = true;
+
+				//this.enabled = false;
 			}
+
+			if (distanza > distanzaStop) this.ai.isStopped = false;
+		}
+
+		void OnEnable()
+		{
+			ai = GetComponent<IAstarAI>();
+			if (ai != null) ai.onSearchPath += Update;
+		}
+
+		void OnDisable()
+		{
+			if (ai != null) ai.onSearchPath -= Update;
 		}
 	}
 }

@@ -16,11 +16,11 @@ TagManager:
   - Water
   - UI
   - 
-  - 
   - Sidewalk
-  - Robot
-  - Enemy
   - Mappa
+  - Robot
+  - GroundEnemy
+  - FlyingEnemy
   - 
   - 
   - 

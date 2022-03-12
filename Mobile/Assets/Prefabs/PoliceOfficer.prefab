@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3523856746930776600}
   - component: {fileID: 5669753654235546649}
   - component: {fileID: 3547583156433631598}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PoliceOfficer
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -172,7 +172,6 @@ MonoBehaviour:
   firePoints:
   - {fileID: 3978522512030025793}
   bulletPrefab: {fileID: 4026332307625284837, guid: 7002e574437878841ad740b07ce3df0e, type: 3}
-  bulletVelocity: 5
 --- !u!1 &2517399449330043996
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,7 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4392378561100423699}
   - component: {fileID: 5986619680051953395}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +263,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3978522512030025793}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
