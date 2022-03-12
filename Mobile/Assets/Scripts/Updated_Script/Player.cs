@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class Player : Entity
@@ -13,14 +14,12 @@ public class Player : Entity
 
     static int id = 0;
 
-    
-
     //shooting
     public Transform firePointDx;
     public Transform firePointSx;
     public GameObject bulletPrefab;
-
     private float lastShot = 0.0f;
+
     //distanza joystick per sparare
     private float distanzaJ = 0.5f;
 
@@ -28,6 +27,13 @@ public class Player : Entity
     [SerializeField]
     public float bulletVelocity = 5;
 
+    //health bar stuff
+    public float chipSpeed = 2f;
+    public Image frontHealthBar;
+    public Image redBackHealthBar;
+    public Image greenBackHealthBar;
+
+    //c'è anche protected float lerpTimer in Entity.cs
 
     public Player() : base(10, 7, 100, 1.5f)
     {
@@ -46,6 +52,7 @@ public class Player : Entity
 
     void Update()
     {
+        setHealth(Mathf.Clamp(getHealth(), 0, getMaxHealth()));
 
         //variabili
         float horizontalMove = 0f;
@@ -84,6 +91,8 @@ public class Player : Entity
 
     private void FixedUpdate()
     {
+        UpdateHealthUI();
+
         //movimento
         base.rigidBody.MovePosition(rigidBody.position + movement * base.getSpeed() * Time.fixedDeltaTime);
 
@@ -108,10 +117,8 @@ public class Player : Entity
     {
         float newHealt = base.getHealth() + base.getMaxHealth() * value;
 
-        if (base.getHealth() > base.getMaxHealth())  base.setHealth(newHealt); 
-        else  base.setHealth(base.getMaxHealth()); 
-        
-        base.healthBar.SetHealth(this.getHealth());
+        if (base.getHealth() > base.getMaxHealth())  base.setHealth(newHealt);
+        else base.setHealth(base.getMaxHealth());
     }
 
     public bool fullHealth()
@@ -131,6 +138,48 @@ public class Player : Entity
 
     }
 
+    public void UpdateHealthUI()
+    {
+        float fillFrontBar = frontHealthBar.fillAmount;
+        float fillRedBar = redBackHealthBar.fillAmount;
+        float fillGreenBar = greenBackHealthBar.fillAmount;
+        float healthFraction = getHealth() / getMaxHealth();
+
+        if (fillRedBar > healthFraction) //se true significa che il player ha preso danno
+        {
+            frontHealthBar.fillAmount = healthFraction;
+            greenBackHealthBar.fillAmount = healthFraction;
+            
+            float percentComplete = lerpTimer / chipSpeed;
+            if (lerpTimer < chipSpeed)
+            {
+                lerpTimer += Time.deltaTime;
+                redBackHealthBar.fillAmount = Mathf.Lerp(fillRedBar, healthFraction, percentComplete);
+            }
+            else
+            {
+                redBackHealthBar.fillAmount = healthFraction;
+            }            
+        }
+
+        if (fillFrontBar < healthFraction) //se true significa che il player si è curato
+        {
+            greenBackHealthBar.fillAmount = healthFraction;          
+
+            float percentComplete = lerpTimer / chipSpeed;
+            if (lerpTimer < chipSpeed)
+            {
+                lerpTimer += Time.deltaTime;
+                frontHealthBar.fillAmount = Mathf.Lerp(fillFrontBar, healthFraction, percentComplete);
+            }
+            else
+            {
+                frontHealthBar.fillAmount = healthFraction;
+                redBackHealthBar.fillAmount = healthFraction;
+            }
+        }
+
+    }
 
     public void OnDestroy()
     {
