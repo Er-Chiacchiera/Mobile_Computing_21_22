@@ -28,7 +28,7 @@ public class Player : Entity
     public float bulletVelocity = 5;
 
     //health bar stuff
-    public float chipSpeed = 2f;
+    public float chipSpeed = 3f;
     public Image frontHealthBar;
     public Image redBackHealthBar;
     public Image greenBackHealthBar;
@@ -52,6 +52,9 @@ public class Player : Entity
 
     void Update()
     {
+        
+        UpdateHealthUI();
+        healthPlusMinus();
         setHealth(Mathf.Clamp(getHealth(), 0, getMaxHealth()));
 
         //variabili
@@ -91,7 +94,7 @@ public class Player : Entity
 
     private void FixedUpdate()
     {
-        UpdateHealthUI();
+        
 
         //movimento
         base.rigidBody.MovePosition(rigidBody.position + movement * base.getSpeed() * Time.fixedDeltaTime);
@@ -117,7 +120,7 @@ public class Player : Entity
     {
         float newHealt = base.getHealth() + base.getMaxHealth() * value;
 
-        if (base.getHealth() > base.getMaxHealth())  base.setHealth(newHealt);
+        if (newHealt < base.getMaxHealth())  base.setHealth(newHealt);
         else base.setHealth(base.getMaxHealth());
     }
 
@@ -142,10 +145,9 @@ public class Player : Entity
     {
         float fillFrontBar = frontHealthBar.fillAmount;
         float fillRedBar = redBackHealthBar.fillAmount;
-        float fillGreenBar = greenBackHealthBar.fillAmount;
         float healthFraction = getHealth() / getMaxHealth();
 
-        if (fillRedBar > healthFraction) //se true significa che il player ha preso danno
+        if (fillRedBar + 0.1f > healthFraction) //se true significa che il player ha preso danno
         {
             frontHealthBar.fillAmount = healthFraction;
             greenBackHealthBar.fillAmount = healthFraction;
@@ -167,7 +169,7 @@ public class Player : Entity
             greenBackHealthBar.fillAmount = healthFraction;          
 
             float percentComplete = lerpTimer / chipSpeed;
-            if (lerpTimer < chipSpeed)
+            if (lerpTimer + 0.1f < chipSpeed)
             {
                 lerpTimer += Time.deltaTime;
                 frontHealthBar.fillAmount = Mathf.Lerp(fillFrontBar, healthFraction, percentComplete);
@@ -181,6 +183,19 @@ public class Player : Entity
 
     }
 
+    private void healthPlusMinus()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            subHealth(10f);
+            lerpTimer = 0f;
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            subHealth(-10f);
+            lerpTimer = 0f;
+        }
+    }
     public void OnDestroy()
     {
         //fai partire il game over!!

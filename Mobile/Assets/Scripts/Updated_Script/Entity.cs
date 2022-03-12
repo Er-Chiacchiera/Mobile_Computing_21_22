@@ -66,7 +66,6 @@ public class Entity : MonoBehaviour
             //danni proiettile
             float currDmg = collision.gameObject.GetComponent<Bullet>().GetDmg();
             this.subHealth(currDmg);
-            healthBar.SetHealth(this.health);
             lerpTimer = 0f;
         }
     }
