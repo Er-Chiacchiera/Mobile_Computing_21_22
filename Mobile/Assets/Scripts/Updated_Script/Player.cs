@@ -6,44 +6,30 @@ using UnityEngine.UI;
 
 public class Player : Entity
 {
+    static int id = 0;
+
+    //Joystick
     public Joystick movJoystick;
     public Joystick aimJoystick;
-
     private Vector2 movement;
     private Vector2 direction;
-
-    static int id = 0;
 
     //shooting
     public Transform firePointDx;
     public Transform firePointSx;
     public GameObject bulletPrefab;
     private float lastShot = 0.0f;
-
-    //distanza joystick per sparare
-    private float distanzaJ = 0.5f;
-
-    //velocità proiettile
+    private float distanzaJ = 0.5f; //distanza joystick per sparare
     [SerializeField]
-    public float bulletVelocity = 5;
+    public float bulletVelocity = 5; //velocità proiettile
 
-    //health bar stuff
+    //health bar stuff (float lerpTimer in Entity.cs)
     public float chipSpeed = 2f;
     public Image frontHealthBar;
     public Image redBackHealthBar;
     public Image greenBackHealthBar;
 
-    //c'è anche protected float lerpTimer in Entity.cs
-
-    public Player() : base(10, 7, 100, 1.5f)
-    {
-        //altre cose qui
-    }
-
-    public Player(float dmg, float fireRate, float maxHealth, float speed) : base(dmg, fireRate, maxHealth, speed)
-    {
-        //altre cose qui
-    }
+    public Player() : base(10, 7, 100, 1.5f) { }
 
     void Start()
     {
@@ -85,7 +71,6 @@ public class Player : Entity
 
         //spostamento
         base.rigidBody.MovePosition(movement * Time.deltaTime);
-
     }
 
 
@@ -112,7 +97,6 @@ public class Player : Entity
     }
 
 
-    //potrebbe essere conveniente spostarla in Entity
     public void RestoreHp(float value) //value espressa in percentuale
     {
         float newHealt = base.getHealth() + base.getMaxHealth() * value;
@@ -133,9 +117,8 @@ public class Player : Entity
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(firePoint.up * bulletVelocity, ForceMode2D.Impulse);
         //setting danno proiettile destro
-        bullet.GetComponent<Bullet>().SetDmg(base.getDmg()); //proprietaria della classe bullet
+        bullet.GetComponent<Bullet>().SetDmg(base.getDmg()); 
         bullet.GetComponent<Bullet>().SetId(base.getId());
-
     }
 
     public void UpdateHealthUI()

@@ -8,15 +8,14 @@ public class Entity : MonoBehaviour
     private float fireRate;
     private float maxHealth;
     private float health;
-    //private bool isDead;
+    private float speed;
+    private int id;
+
     protected float lerpTimer; //serve per la health bar del player
 
-    private float speed;
     public Rigidbody2D rigidBody;
 
     public HealthBar healthBar;
-
-    private int id;
 
     //Costruttore
     public Entity(float dmg, float fireRate, float maxHealth, float speed)
@@ -29,11 +28,7 @@ public class Entity : MonoBehaviour
 
         //healthBar.SetMaxHealth(maxHealth);
         //healthBar.SetHealth(maxHealth);
-
-        //this.isDead = false;
     }
-
-
 
     public void setHealth (float value) { this.health = value; }
     public float getHealth() { return this.health; }
@@ -50,13 +45,12 @@ public class Entity : MonoBehaviour
     public void setSpeed(float value) { this.speed = value; }
     public float getSpeed() { return this.speed; }
 
-    public void subHealth(float value) { this.health -= value; }
-
     public Rigidbody2D getBody() { return this.rigidBody; }
 
+    public void setId(int value) { this.id = value; }
     public int getId() { return id; }
 
-    public void setId(int value) { this.id = value; }
+    public void subHealth(float value) { this.health -= value; }
 
     private void OnTriggerEnter2D(Collider2D collision) //valutare lo spostamento
     {

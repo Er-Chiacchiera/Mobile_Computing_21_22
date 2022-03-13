@@ -17,10 +17,11 @@ namespace Pathfinding
 	public class DestinationAICustom : VersionedMonoBehaviour
 	{
 		[SerializeField]
-		private float distanzaStop = 10;
+		private float stopDistance = 10;
 		/// <summary>The object that the AI should move to</summary>
 		IAstarAI ai;
 		private GameObject player;
+
 		public GameObject spawnSubject;
 		public Animator animator;
 		public bool isSpawner;
@@ -33,43 +34,28 @@ namespace Pathfinding
 		private float spawnRate = 5.0f;
 
 		private void Start()
-        {
+		{
 			player = GameObject.Find("Robot");
 		}
 
 
-        /// <summary>Updates the AI's destination every frame</summary>
-        void Update()
+		/// <summary>Updates the AI's destination every frame</summary>
+		void Update()
 		{
+
 			//calcolo distanza auto-robot
-			float distanzaX = (gameObject.transform.position.x - player.GetComponent<Transform>().position.x);
-			float distanzaY = (gameObject.transform.position.y - player.GetComponent<Transform>().position.y);
-			float distanza = Mathf.Sqrt(distanzaX * distanzaX + distanzaY * distanzaY);
-
-			/*if (distanza > distanzaStop && !arrived)
-			{
-				if (target != null && ai != null) ai.destination = target.position;
-			}
-			else
-            {
-				if (!arrived)
-                {
-
-                }
-				arrived = true;
-				ai.destination = gameObject.GetComponent<Transform>().position;
-				
-            }*/
+			//float distanzaX = (this.GetComponent<Transform>().position.x - player.GetComponent<Transform>().position.x);
+			//float distanzaY = (this.GetComponent<Transform>().position.y - player.GetComponent<Transform>().position.y);
+			//float distanza = Mathf.Sqrt(distanzaX * distanzaX + distanzaY * distanzaY);
 
 			if (player.GetComponent<Transform>().position != null && ai != null) ai.destination = player.GetComponent<Transform>().position;
-			
-
-			if (distanza <= distanzaStop)
-            {
+			float distance = ai.remainingDistance;
 
 
-                if (isSpawner && currSpawn < maxSpawn && Time.time > nextSpawnTime)
-                {
+			if (distance <= stopDistance)
+			{
+				if (isSpawner && currSpawn < maxSpawn && Time.time > nextSpawnTime)
+				{
 					//aggiorno il timer
 					nextSpawnTime = Time.time + spawnRate;
 
@@ -90,7 +76,7 @@ namespace Pathfinding
 				//this.enabled = false;
 			}
 
-			if (distanza > distanzaStop) this.ai.isStopped = false;
+			if (distance > stopDistance) this.ai.isStopped = false;
 		}
 
 		void OnEnable()

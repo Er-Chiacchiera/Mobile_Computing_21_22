@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Pathfinding;
 using UnityEngine;
 
 public abstract class Shooter : Enemy
@@ -12,14 +13,55 @@ public abstract class Shooter : Enemy
     public List<Transform> firePoints;
     public GameObject bulletPrefab;
 
-
     private float lastShot;
-
 
     public Shooter(float dmg, float fireRate, float maxHealth, float speed) : base (dmg, fireRate, maxHealth, speed)
     {
-        
+    }
+
+
+    public new void Start()
+    {
+        target = GameObject.Find("Robot");
+        targetPosition = target.GetComponent<Transform>();
         lastShot = Time.time;
+        base.Start();
+    }
+
+    public new void Update()
+    {
+        
+        base.Update();
+
+        if (base.getHealth() <= 0)
+        {
+            Destroy(gameObject);
+        }
+
+        
+        if (base.isInScope)
+        {
+            setXDirection(getTargetPosition().position.x - base.getBody().position.x);
+            setYDirection(getTargetPosition().position.y - base.getBody().position.y);
+            setAngle((Mathf.Atan2(getDirection().y, getDirection().x) * Mathf.Rad2Deg)-90);
+        }
+
+        
+    }
+
+    public void FixedUpdate()
+    {  
+        if (base.isInScope)
+        {
+            base.getBody().rotation = getAngle();
+
+            if (Time.time > (1f / base.getFireRate()) + getLastShoot())
+            {
+                foreach (Transform firePoint in this.firePoints)
+                    Shoot(firePoint);
+            }
+        }
+
     }
 
     public void setXDirection(float value) { this.direction.x = value;}
@@ -32,6 +74,7 @@ public abstract class Shooter : Enemy
     public float getAngle() { return this.angle; }
 
     public Transform getTargetPosition() { return this.targetPosition;}
+
 
     protected void Shoot(Transform firePoint)
     {

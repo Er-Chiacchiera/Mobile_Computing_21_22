@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: -189970782938985876}
   - component: {fileID: 3627261443427949135}
   - component: {fileID: 2900909185560286914}
-  - component: {fileID: 6208994216675471005}
   - component: {fileID: 776061296944494540}
   - component: {fileID: 3221854192631337068}
   m_Layer: 11
@@ -129,7 +128,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -182,7 +181,7 @@ MonoBehaviour:
   radius: 0.6
   height: 2
   canMove: 1
-  maxSpeed: 1
+  maxSpeed: 2
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2
@@ -208,25 +207,6 @@ MonoBehaviour:
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
   constrainInsideGraph: 0
---- !u!114 &6208994216675471005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3280596974447985609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d68495903c7e1714da0f6d96adff33c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  distanzaStop: 6
-  spawnSubject: {fileID: 0}
-  animator: {fileID: 0}
-  isSpawner: 0
-  maxSpawn: 0
-  spawnRate: 0
 --- !u!95 &776061296944494540
 Animator:
   serializedVersion: 3
@@ -260,7 +240,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: -189970782938985876}
   healthBar: {fileID: 0}
-  animator: {fileID: 0}
+  animator: {fileID: 776061296944494540}
+  stopDistance: 10
+  isSpawner: 0
+  maxSpawn: 0
+  spawnRate: 0
+  spawnSubject: {fileID: 0}
   firePoints:
   - {fileID: 6339659028698542057}
   - {fileID: 220161681243132784}
