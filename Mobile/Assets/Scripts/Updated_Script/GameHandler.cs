@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using UnityEngine.UI;
 
 public class GameHandler : MonoBehaviour
 {
-    private float score = 0;
+    private float score = 0.0f;
+    public Text scoreOutput;
 
     //private Entity player;
     //private List<Entity> enemies;
@@ -30,18 +32,19 @@ public class GameHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //StartCoroutine(Spawn(car, carSpawnRate));
-        StartCoroutine(enemyDrop(helicopter, helicopterSpawnRate));
+        StartCoroutine(Spawn(car, carSpawnRate));
+        //StartCoroutine(enemyDrop(helicopter, helicopterSpawnRate));
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        scoreOutput.text = score.ToString();
     }
 
     public void setScore(int value){ this.score = value; }
     public float getScore(){ return this.score; }
+    public void updateScore(float value) { this.score += value; }
 
     //public void setPlayer(Entity value) { this.player = value; }
     //public Entity getPlayer() { return this.player; }
@@ -59,7 +62,7 @@ public class GameHandler : MonoBehaviour
         direction.x = outsideScreenRadius * Mathf.Cos(angle);
         direction.y = outsideScreenRadius * Mathf.Sin(angle);
         spawnPos += direction * spawnRadius;
-
+        
         //spawn
         Instantiate(enemy, spawnPos, Quaternion.identity);
         yield return new WaitForSeconds(1 / spawnRate);

@@ -239,6 +239,7 @@ MonoBehaviour:
   rigidBody: {fileID: 948691392659394251}
   healthBar: {fileID: 0}
   animator: {fileID: 2108944154723011956}
+  grantScore: 20
   stopDistance: 6
   isSpawner: 1
   maxSpawn: 3

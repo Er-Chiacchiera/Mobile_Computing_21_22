@@ -4,7 +4,12 @@ using Pathfinding;
 using UnityEngine;
 public class Enemy : Entity 
 {
-public Animator animator;
+    public Animator animator;
+
+    //score parameter
+    [SerializeField]
+    private float grantScore = 0.0f;
+    private GameHandler game;
 
     //pathfinder parameter
     [SerializeField]
@@ -17,15 +22,13 @@ public Animator animator;
     private int maxSpawn = 0;
     [SerializeField]
     private float spawnRate = 5.0f;
+    private int currSpawn = 0;
+    private float nextSpawnTime = 0.0f;
 
-
-    /// <summary>The object that the AI should move to</summary>
+    //pathfinder parameter
     IAstarAI ai;
     private GameObject player;
     public GameObject spawnSubject;
-    
-    private int currSpawn = 0;
-    private float nextSpawnTime = 0.0f;
     private float distance;
     protected bool isInScope ;
         
@@ -37,6 +40,7 @@ public Animator animator;
 
     public void Start()
     {
+        game = GameObject.Find("GameController").GetComponent<GameHandler>();
         ai = GetComponent<IAstarAI>();
         ai.onSearchPath += Update;
     }
@@ -92,6 +96,11 @@ public Animator animator;
     void OnDisable()
     {
         if (ai != null) ai.onSearchPath -= Update;
+    }
+
+    private void OnDestroy()
+    {
+        game.updateScore(grantScore);
     }
 
 }
