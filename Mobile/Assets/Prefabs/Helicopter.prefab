@@ -12,11 +12,13 @@ GameObject:
   - component: {fileID: 1502249548812821558}
   - component: {fileID: 4856330904098069000}
   - component: {fileID: -189970782938985876}
-  - component: {fileID: 1058634991646374507}
+  - component: {fileID: 3627261443427949135}
+  - component: {fileID: 2900909185560286914}
+  - component: {fileID: 776061296944494540}
   - component: {fileID: 3221854192631337068}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Helicopter
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 11
   m_Sprite: {fileID: 21300000, guid: a41c9a1a040f0344bb2cdc900b20b852, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -126,7 +128,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -135,7 +137,77 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!95 &1058634991646374507
+--- !u!114 &3627261443427949135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3280596974447985609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
+--- !u!114 &2900909185560286914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3280596974447985609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 5
+  radius: 0.6
+  height: 2
+  canMove: 1
+  maxSpeed: 2
+  gravity: {x: NaN, y: NaN, z: NaN}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  centerOffsetCompatibility: NaN
+  repathRateCompatibility: NaN
+  canSearchCompability: 0
+  orientation: 1
+  enableRotation: 1
+  autoRepath:
+    mode: 2
+    interval: 0.5
+    sensitivity: 10
+    maximumInterval: 2
+    visualizeSensitivity: 0
+  targetCompatibility: {fileID: 0}
+  maxAcceleration: -2.5
+  rotationSpeed: 360
+  slowdownDistance: 0.8
+  pickNextWaypointDist: 2
+  endReachedDistance: 1.67
+  alwaysDrawGizmos: 0
+  slowWhenNotFacingTarget: 1
+  whenCloseToDestination: 0
+  constrainInsideGraph: 0
+--- !u!95 &776061296944494540
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -168,7 +240,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: -189970782938985876}
   healthBar: {fileID: 0}
-  animator: {fileID: 1058634991646374507}
+  animator: {fileID: 776061296944494540}
+  grantScore: 50
+  stopDistance: 10
+  isSpawner: 0
+  maxSpawn: 0
+  spawnRate: 0
+  spawnSubject: {fileID: 0}
   firePoints:
   - {fileID: 6339659028698542057}
   - {fileID: 220161681243132784}
@@ -182,7 +260,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 220161681243132784}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FirePointDx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,7 +290,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6339659028698542057}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FirePointSx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
