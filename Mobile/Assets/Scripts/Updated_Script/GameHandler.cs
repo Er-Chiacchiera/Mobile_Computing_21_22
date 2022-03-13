@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameHandler : MonoBehaviour
 {
     private float score = 0.0f;
-    public Text scoreOutput;
+    public TextMeshProUGUI scoreOutput;
 
     //private Entity player;
     //private List<Entity> enemies;
