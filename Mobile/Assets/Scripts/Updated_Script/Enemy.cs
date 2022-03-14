@@ -31,7 +31,14 @@ public class Enemy : Entity
     public GameObject spawnSubject;
     private float distance;
     protected bool isInScope ;
-        
+
+    //healthbar
+    public GameObject hpBar;
+    private GameObject hpBarReference;
+    private float verticalDistance = 1.7f;
+    private float horizontalDistance = -0.5f;
+    
+
 
     public Enemy(float dmg, float fireRate, float maxHealth, float speed) : base(dmg, fireRate, maxHealth, speed)
     {
@@ -40,6 +47,8 @@ public class Enemy : Entity
 
     public void Start()
     {
+        SpawnHealthBar();
+
         game = GameObject.Find("GameController").GetComponent<GameHandler>();
         ai = GetComponent<IAstarAI>();
         ai.onSearchPath += Update;
@@ -47,12 +56,11 @@ public class Enemy : Entity
 
     public void Update()
     {
-        
+        UpdateHealthBar();
 
         if (player.GetComponent<Transform>().position != null && ai != null) ai.destination = player.GetComponent<Transform>().position;
         distance = ai.remainingDistance;
 
-        
         if (distance <= stopDistance)
         {
 
@@ -103,5 +111,26 @@ public class Enemy : Entity
         game.updateScore(grantScore);
     }
 
+    private void SpawnHealthBar()
+    {
+        Vector2 spawnPos = gameObject.GetComponent<Transform>().position;
+        spawnPos.x += horizontalDistance;
+        spawnPos.y += verticalDistance;
+        hpBarReference = Instantiate(hpBar, spawnPos, Quaternion.identity);
+    }
+
+    private void UpdateHealthBar()
+    {
+        Vector2 position = gameObject.GetComponent<Transform>().position;
+        position.x += horizontalDistance;
+        position.y += verticalDistance;
+
+        Vector3 position3 = new Vector3(position.x, position.y, 0);
+        hpBarReference.GetComponent<Transform>().position = position3;
+
+        Vector3 scale = hpBarReference.GetComponentInChildren<Transform>().localScale;
+        scale.x = getHealth() / getMaxHealth();
+        hpBarReference.GetComponentInChildren<Transform>().localScale = scale;
+    }
 }
 

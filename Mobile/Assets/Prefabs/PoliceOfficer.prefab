@@ -246,6 +246,7 @@ MonoBehaviour:
   maxSpawn: 0
   spawnRate: 5
   spawnSubject: {fileID: 0}
+  hpBar: {fileID: 7479689915047091773, guid: 0976a819a97b3ad46a54cdb03bae1cfd, type: 3}
   firePoints:
   - {fileID: 3978522512030025793}
   bulletPrefab: {fileID: 4026332307625284837, guid: 7002e574437878841ad740b07ce3df0e, type: 3}
