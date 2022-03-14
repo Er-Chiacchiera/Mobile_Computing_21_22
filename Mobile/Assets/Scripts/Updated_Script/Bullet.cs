@@ -35,8 +35,6 @@ public class Bullet : MonoBehaviour
             if (collision.gameObject.tag != "Robot" && collision.gameObject.tag != "Bullet")
                 Destroy(gameObject);
         }
-        Debug.Log(id);
-        Debug.Log(dmg);
     }
 
     public void SetDmg(float value)

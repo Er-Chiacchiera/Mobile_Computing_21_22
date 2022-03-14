@@ -245,3 +245,4 @@ MonoBehaviour:
   maxSpawn: 3
   spawnRate: 9
   spawnSubject: {fileID: 1360557703968692192, guid: 8f1590a72a96a4b449ce1229acd62bb0, type: 3}
+  hpBar: {fileID: 7479689915047091773, guid: 0976a819a97b3ad46a54cdb03bae1cfd, type: 3}
