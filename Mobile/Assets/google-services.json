@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "125228493451",
+    "project_id": "b1t-them-all-35d33",
+    "storage_bucket": "b1t-them-all-35d33.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:125228493451:android:82f01ce079b0d3bdbd828e",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.b1tThemAll"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "125228493451-uu8ucme0rsdjjg0lfv03t8051ig5v84h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6Z2Q_ClgdUhkv2lZnguTFgNnIjrWGdBo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "125228493451-uu8ucme0rsdjjg0lfv03t8051ig5v84h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "125228493451-et6l3as6vr6ha2au7vpdrl2cu6f257k9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.DefaultCompany.b1tThemAll"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
