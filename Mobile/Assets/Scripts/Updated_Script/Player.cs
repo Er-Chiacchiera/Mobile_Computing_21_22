@@ -30,7 +30,7 @@ public class Player : Entity
     public Image greenBackHealthBar;
 
     public Player() : base(10, 7, 100, 1.5f) { }
-
+    //
     void Start()
     {
         base.setId(id);
