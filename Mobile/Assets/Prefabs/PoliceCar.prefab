@@ -159,7 +159,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1675614095
   m_SortingLayer: -1
-  m_SortingOrder: 10
+  m_SortingOrder: 15
   m_Sprite: {fileID: 21300000, guid: 6e79aeec0f1df2e418d1a9f4b2465f8d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -324,8 +324,9 @@ MonoBehaviour:
   animator: {fileID: 2108944154723011956}
   grantScore: 20
   stopDistance: 6
+  limitDistance: 10
   isSpawner: 1
-  maxSpawn: 3
+  maxSpawn: 1
   spawnRate: 9
   spawnSubject: {fileID: 1360557703968692192, guid: 8f1590a72a96a4b449ce1229acd62bb0, type: 3}
   hpBar: {fileID: 7479689915047091773, guid: 0976a819a97b3ad46a54cdb03bae1cfd, type: 3}

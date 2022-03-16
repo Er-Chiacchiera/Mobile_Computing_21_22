@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Pathfinding;
 using UnityEngine;
-public class Enemy : Entity 
+public class Enemy : Entity
 {
     public Animator animator;
 
@@ -14,6 +14,17 @@ public class Enemy : Entity
     //pathfinder parameter
     [SerializeField]
     protected float stopDistance = 10;
+    [SerializeField]
+    protected float limitDistance = 15;
+
+    private float maxOverTime = 8.0f;
+    private float destroyTime = 0.0f;
+
+    IAstarAI ai;
+    private GameObject player;
+    public GameObject spawnSubject;
+    private float distance;
+    protected bool isInScope;
 
     //spawn parameter
     [SerializeField]
@@ -22,22 +33,16 @@ public class Enemy : Entity
     private int maxSpawn = 0;
     [SerializeField]
     private float spawnRate = 5.0f;
-    private int currSpawn = 0;
-    private float nextSpawnTime = 0.0f;
-
-    //pathfinder parameter
-    IAstarAI ai;
-    private GameObject player;
-    public GameObject spawnSubject;
-    private float distance;
-    protected bool isInScope ;
+    //private int currSpawn = 0;
+    //private float nextSpawnTime = 0.0f;
+    private Spawner spawner;
 
     //healthbar
     public GameObject hpBar;
     private GameObject hpBarReference;
     private float verticalDistance = 1.7f;
     private float horizontalDistance = -0.5f;
-    
+
 
 
     public Enemy(float dmg, float fireRate, float maxHealth, float speed) : base(dmg, fireRate, maxHealth, speed)
@@ -48,7 +53,7 @@ public class Enemy : Entity
     public void Start()
     {
         SpawnHealthBar();
-
+        this.spawner = new Spawner(maxSpawn, spawnRate, spawnSubject, player);
         game = GameObject.Find("GameController").GetComponent<GameHandler>();
         ai = GetComponent<IAstarAI>();
         ai.onSearchPath += Update;
@@ -64,21 +69,9 @@ public class Enemy : Entity
         if (distance <= stopDistance)
         {
 
-            if (isSpawner && currSpawn < maxSpawn && Time.time > nextSpawnTime)
+            if (isSpawner)
             {
-                //aggiorno il timer
-                nextSpawnTime = Time.time + spawnRate;
-
-                animator.SetTrigger("Open");
-                currSpawn += 1;
-
-                Vector3 spawnPos = gameObject.GetComponent<Transform>().position;
-                float rot = gameObject.GetComponent<Rigidbody2D>().rotation;
-
-                float dis = 1;
-                spawnPos.x = spawnPos.x + dis * Mathf.Cos(rot * Mathf.Deg2Rad);
-                spawnPos.y = spawnPos.y + dis * Mathf.Sin(rot * Mathf.Deg2Rad);
-                Instantiate(spawnSubject, spawnPos, new Quaternion(0, 0, rot, 0));
+                StartCoroutine(spawner.Spawn(this.gameObject, animator));
             }
 
             isInScope = true;
@@ -90,6 +83,25 @@ public class Enemy : Entity
         {
             this.ai.isStopped = false;
             this.isInScope = false;
+        }
+
+        if (distance > limitDistance && destroyTime == 0)
+        {
+            destroyTime = Time.time + maxOverTime;
+        }
+
+        if (Time.time > destroyTime)
+        {
+            if (distance > limitDistance)
+            {
+                this.grantScore = 0;
+                Destroy(gameObject);
+            }
+
+            else
+            {
+                destroyTime = 0;
+            }
         }
 
     }
@@ -109,6 +121,9 @@ public class Enemy : Entity
     private void OnDestroy()
     {
         game.updateScore(grantScore);
+
+        Destroy(hpBarReference);
+        this.ai.isStopped = true;
     }
 
     private void SpawnHealthBar()
@@ -132,5 +147,8 @@ public class Enemy : Entity
         scale.x = getHealth() / getMaxHealth();
         hpBarReference.GetComponentInChildren<Transform>().localScale = scale;
     }
+
+
+
 }
 

@@ -243,6 +243,7 @@ MonoBehaviour:
   animator: {fileID: 5669753654235546649}
   grantScore: 5
   stopDistance: 4
+  limtDistance: 15
   isSpawner: 0
   maxSpawn: 0
   spawnRate: 5
