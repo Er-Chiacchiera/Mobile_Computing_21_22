@@ -11,7 +11,7 @@ public class LoadingButton : MonoBehaviour
     public void ForceField()
     {
         forceField.SetActive(true);
-        robot.GetComponent<Player>().shutdown += Time.time;
+        robot.GetComponent<Player>().startingTime = Time.fixedTime;
         robot.GetComponent<Player>().isActive =true;
 
     }

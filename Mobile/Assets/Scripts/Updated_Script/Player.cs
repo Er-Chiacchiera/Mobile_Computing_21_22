@@ -33,9 +33,10 @@ public class Player : Entity
     private bool isEnable = false;
     public bool isActive = false;
     [SerializeField] private GameObject forceField;
-    [SerializeField] private GameObject loadingButton;
+    [SerializeField] private Button loadingButton;
     [SerializeField] private float countdown = 0;
     public float shutdown = 0;
+    public float startingTime = 0;
     private LoadingCircle loadingCircle;
 
 
@@ -88,39 +89,6 @@ public class Player : Entity
         //spostamento
         base.rigidBody.MovePosition(movement * Time.deltaTime);
 
-        //forceField
-        if(!isEnable)
-        {
-            if(Time.time > countdown)
-            {
-                isEnable = true;
-                loadingButton.SetActive(true);
-                
-            }
-
-            else
-            {
-                loadingCircle.progress = (1.01f) - ((countdown - Time.time) / countdown);
-            }
-            
-        }
-
-        if (isActive)
-        {
-            loadingButton.SetActive(false);
-            loadingCircle.progress = 0;
-
-            if (Time.time > shutdown)
-            {
-                forceField.SetActive(false);
-                isActive = false;
-                isEnable = false;
-                countdown += Time.time;
-            }
-        }
-        
-
-
     }
 
 
@@ -144,6 +112,42 @@ public class Player : Entity
             Shoot(firePointDx);
             Shoot(firePointSx);
         }
+
+        //forceField
+        if (!isEnable)
+        {
+            if (Time.fixedTime - startingTime > countdown)
+            {
+                isEnable = true;
+                loadingButton.interactable = true;
+
+            }
+
+            else
+            {
+                loadingCircle.progress = (Time.fixedTime - startingTime) / countdown;
+            }
+
+        }
+
+        if (isActive)
+        {
+            loadingButton.interactable = false;
+            loadingCircle.progress = 0;
+            base.isImmune = true;
+
+            if (Time.fixedTime - startingTime > shutdown)
+            {
+                forceField.SetActive(false);
+                this.isImmune = false;
+                isActive = false;
+                isEnable = false;
+                startingTime = Time.fixedTime;
+                
+            }
+           
+        }
+        
     }
 
 
@@ -230,6 +234,5 @@ public class Player : Entity
     {
         //fai partire il game over!!
     }
-
 
 }

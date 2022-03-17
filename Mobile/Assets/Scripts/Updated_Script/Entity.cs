@@ -11,6 +11,8 @@ public class Entity : MonoBehaviour
     private float speed;
     private int id;
 
+    protected bool isImmune = false;
+
     protected float lerpTimer; //serve per la health bar del player
 
     public Rigidbody2D rigidBody;
@@ -52,10 +54,10 @@ public class Entity : MonoBehaviour
 
     public void subHealth(float value) { this.health -= value; }
 
-    private void OnTriggerEnter2D(Collider2D collision) //valutare lo spostamento
+    private void OnTriggerEnter2D(Collider2D collision) 
     {
         //se coolide con un proiettile 
-        if (collision.gameObject.tag == "Bullet" && this.id != collision.gameObject.GetComponent<Bullet>().GetId())  //nota: il proiettile nemico ha tag BulletEnemy
+        if (collision.gameObject.tag == "Bullet" && this.id != collision.gameObject.GetComponent<Bullet>().GetId() && !isImmune)  
         {
             //danni proiettile
             float currDmg = collision.gameObject.GetComponent<Bullet>().GetDmg();
