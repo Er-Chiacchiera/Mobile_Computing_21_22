@@ -29,11 +29,24 @@ public class Player : Entity
     public Image redBackHealthBar;
     public Image greenBackHealthBar;
 
+    //forceField parameter
+    private bool isEnable = false;
+    public bool isActive = false;
+    [SerializeField] private GameObject forceField;
+    [SerializeField] private GameObject loadingButton;
+    [SerializeField] private float countdown = 0;
+    public float shutdown = 0;
+    private LoadingCircle loadingCircle;
+
+
+
+
     public Player() : base(10, 7, 100, 1.5f) { }
 
     void Start()
     {
         base.setId(id);
+        loadingCircle = this.GetComponent<LoadingCircle>();
     }
 
     void Update()
@@ -74,6 +87,40 @@ public class Player : Entity
 
         //spostamento
         base.rigidBody.MovePosition(movement * Time.deltaTime);
+
+        //forceField
+        if(!isEnable)
+        {
+            if(Time.time > countdown)
+            {
+                isEnable = true;
+                loadingButton.SetActive(true);
+                
+            }
+
+            else
+            {
+                loadingCircle.progress = (1.01f) - ((countdown - Time.time) / countdown);
+            }
+            
+        }
+
+        if (isActive)
+        {
+            loadingButton.SetActive(false);
+            loadingCircle.progress = 0;
+
+            if (Time.time > shutdown)
+            {
+                forceField.SetActive(false);
+                isActive = false;
+                isEnable = false;
+                countdown += Time.time;
+            }
+        }
+        
+
+
     }
 
 
