@@ -123,6 +123,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -940,6 +941,40 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Tile_Second_30: -7724907170727851963
+      Tile_Second_3: -5400015165585374086
+      Tile_Second_25: 3305621117869239778
+      Tile_Second_9: 8623864122649923363
+      Tile_Second_7: -6604305853681851267
+      Tile_Second_11: -4461770708527951327
+      Tile_Second_27: 8185247500824750812
+      Tile_Second_20: 8928200113415083833
+      Tile_Second_21: -993732708858363432
+      Tile_Second_28: 5405666440620151973
+      Tile_Second_22: 6150783217100911155
+      Tile_Second_13: -1337007306618284450
+      Tile_Second_24: 1391236439209016409
+      Tile_Second_26: 9087612730491609254
+      Tile_Second_2: 3932724395304818829
+      Tile_Second_14: -75544511117619691
+      Tile_Second_0: -3769418034299133631
+      Tile_Second_29: -6500274834088319904
+      Tile_Second_17: 2578506968355308939
+      Tile_Second_16: 1951452329255284254
+      Tile_Second_1: 3422337913269143154
+      Tile_Second_4: -5676835059762325830
+      Tile_Second_8: -4826063509867639522
+      Tile_Second_18: 5189843541136202416
+      Tile_Second_10: 5919567707592039559
+      Tile_Second_23: -4033635106251769326
+      Tile_Second_12: -8398121495904808913
+      Tile_Second_31: 5892231961991985247
+      Tile_Second_5: 5190825902168642494
+      Tile_Second_6: 1861314317996411443
+      Tile_Second_32: -2715917359157478986
+      Tile_Second_19: -5013015639098043543
+      Tile_Second_15: -4003761332783624902
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
