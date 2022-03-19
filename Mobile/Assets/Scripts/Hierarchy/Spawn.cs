@@ -36,7 +36,7 @@ public class Spawn : MonoBehaviour
         if (generatedEnemyTracer.ContainsKey(id))
             spawnCounter = generatedEnemyTracer[id];
         else
-            generatedEnemyTracer.Add(id, 0);    
+            generatedEnemyTracer.Add(id, 0);
 
         if (spawnCounter < maxSpawn)
         {
@@ -80,8 +80,8 @@ public class Spawn : MonoBehaviour
             spawnPos += direction * spawnRadius;
 
             //spawn
-            Instantiate(spawnSubject, spawnPos, Quaternion.identity).GetComponent<Enemy>().setProgId(idProgression+=1);
-            
+            Instantiate(spawnSubject, spawnPos, Quaternion.identity).GetComponent<Enemy>().setProgId(idProgression += 1);
+
         }
         yield return new WaitForSeconds(1 / spawnRate);
         yield return SpawnNearPlayer(spawnSubject, maxSpawn, spawnRate, playerBody, id);
@@ -109,7 +109,7 @@ public class Spawn : MonoBehaviour
         yield return enemyDrop(spawnSubject, maxSpawn, spawnRate, playerBody, id);
     }
 
-    public void UpdetEnemyTracer (int key) { if(enemyTracer.ContainsKey(key)) enemyTracer[key] -= 1; }
+    public void UpdetEnemyTracer(int key) { if (enemyTracer.ContainsKey(key)) enemyTracer[key] -= 1; }
 
     public void UpdetGeneratedEnemyTracer(int key) { if (generatedEnemyTracer.ContainsKey(key)) generatedEnemyTracer[key] -= 1; }
 

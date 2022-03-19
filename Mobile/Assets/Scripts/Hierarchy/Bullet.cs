@@ -36,7 +36,7 @@ public class Bullet : MonoBehaviour
                 Destroy(gameObject);
         }
 
-        if (collision.gameObject.tag == "Ability") dmg = 0;
+        if (collision.gameObject.tag == "Ability" && id != 0) dmg = 0;
     }
 
     public void SetDmg(float value)
