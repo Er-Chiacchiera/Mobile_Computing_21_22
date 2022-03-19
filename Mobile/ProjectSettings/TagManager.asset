@@ -8,6 +8,7 @@ TagManager:
   - Robot
   - PoliceMan
   - Enemy
+  - Ability
   layers:
   - Default
   - TransparentFX

@@ -94,9 +94,9 @@ GameObject:
   - component: {fileID: 1502249548812821558}
   - component: {fileID: 4856330904098069000}
   - component: {fileID: -189970782938985876}
+  - component: {fileID: 776061296944494540}
   - component: {fileID: 3627261443427949135}
   - component: {fileID: 2900909185560286914}
-  - component: {fileID: 776061296944494540}
   - component: {fileID: 3221854192631337068}
   m_Layer: 12
   m_Name: Helicopter
@@ -220,6 +220,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &776061296944494540
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3280596974447985609}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ff0eec3b80e0ff546a7271ab3b800ade, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &3627261443427949135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,25 +309,6 @@ MonoBehaviour:
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
   constrainInsideGraph: 0
---- !u!95 &776061296944494540
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3280596974447985609}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ff0eec3b80e0ff546a7271ab3b800ade, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &3221854192631337068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,17 +321,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3813a747dc1f6f4fb5b19185782eca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dmg: 10
+  fireRate: 1
+  maxHealth: 150
+  speed: 2
   rigidBody: {fileID: -189970782938985876}
-  healthBar: {fileID: 0}
   animator: {fileID: 776061296944494540}
   grantScore: 50
   stopDistance: 10
-  limtDistance: 20
-  isSpawner: 0
-  maxSpawn: 0
-  spawnRate: 0
-  spawnSubject: {fileID: 0}
-  hpBar: {fileID: 0}
+  limitDistance: 100
+  hpBar: {fileID: 7479689915047091773, guid: 0976a819a97b3ad46a54cdb03bae1cfd, type: 3}
   firePoints:
   - {fileID: 6339659028698542057}
   - {fileID: 220161681243132784}

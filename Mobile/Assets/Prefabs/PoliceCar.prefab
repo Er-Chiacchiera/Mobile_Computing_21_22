@@ -319,14 +319,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90713a659ba34f6499c4bb5aa5315ffd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dmg: 0
+  fireRate: 0
+  maxHealth: 60
+  speed: 1.5
   rigidBody: {fileID: 948691392659394251}
-  healthBar: {fileID: 0}
   animator: {fileID: 2108944154723011956}
   grantScore: 20
   stopDistance: 6
   limitDistance: 10
-  isSpawner: 1
-  maxSpawn: 1
-  spawnRate: 9
-  spawnSubject: {fileID: 1360557703968692192, guid: 8f1590a72a96a4b449ce1229acd62bb0, type: 3}
   hpBar: {fileID: 7479689915047091773, guid: 0976a819a97b3ad46a54cdb03bae1cfd, type: 3}
+  maxSpawn: 1
+  spawnRate: 0.15
+  spawnSubject: {fileID: 1360557703968692192, guid: 8f1590a72a96a4b449ce1229acd62bb0, type: 3}
+  flag: 1
