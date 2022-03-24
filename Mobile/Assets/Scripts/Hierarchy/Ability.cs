@@ -22,6 +22,8 @@ public class Ability : MonoBehaviour
     void Start()
     {
         loadingCircle = this.GetComponent<LoadingCircle>();
+        startingTime = Time.fixedTime;
+        loadingCircle.progress = 0;
     }
 
     // Update is called once per frame

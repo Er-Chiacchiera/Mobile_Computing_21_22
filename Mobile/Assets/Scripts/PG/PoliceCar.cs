@@ -23,12 +23,6 @@ public class PoliceCar : Spawner
     new
         void Update()
     {
-        if (base.getHealth() <= 0)
-        {
-            //this.isDead = true;
-            Destroy(gameObject);
-        }
-
         base.Update();
     }
 

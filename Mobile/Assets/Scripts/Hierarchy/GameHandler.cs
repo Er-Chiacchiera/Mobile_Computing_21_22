@@ -13,8 +13,9 @@ public class GameHandler : MonoBehaviour
     private Spawn spawner;
     [SerializeField]
     private float spawnRate = 0.15f;
-    public GameObject car;
+    public GameObject policeCar;
     public GameObject helicopter;
+    public GameObject militaryJeep;
     public GameObject playerBody;
 
     //private Entity player;
@@ -23,8 +24,9 @@ public class GameHandler : MonoBehaviour
     void Start()
     {
         spawner = this.GetComponent<Spawn>();
-        StartCoroutine(spawner.SpawnNearPlayer(car, 4, spawnRate, playerBody, 1));
+        StartCoroutine(spawner.SpawnNearPlayer(policeCar, 4, spawnRate, playerBody, 1));
         StartCoroutine(spawner.enemyDrop(helicopter, 2, spawnRate, playerBody, 3));
+        StartCoroutine(spawner.SpawnNearPlayer(militaryJeep, 3, (spawnRate-0.05f), playerBody, 4));
     }
 
     void Update()

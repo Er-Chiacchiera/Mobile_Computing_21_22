@@ -4,6 +4,8 @@ using Pathfinding;
 using UnityEngine;
 public class Enemy : Entity
 {
+
+    private static float onDeathTime = 10.0f;
     public Animator animator;
 
     //score parameter
@@ -73,6 +75,27 @@ public class Enemy : Entity
             this.isInScope = false;
         }
 
+        if(getHealth() <= 0)
+        {
+            
+            Destroy(gameObject);
+            game.updateScore(grantScore);
+            Destroy(hpBarReference);
+
+            //da valutare le seguenti aggiunte
+            /*
+            Destroy(gameObject, onDeathTime);
+            animator.SetTrigger("Death");
+            this.ai.isStopped = true;
+            this.GetComponent<BoxCollider2D>().enabled = false;
+            this.enabled = false;*/
+        }
+
+
+    }
+
+    private void FixedUpdate()
+    {
         if (distance > limitDistance && destroyTime == 0)
         {
             destroyTime = Time.time + maxOverTime;
@@ -91,7 +114,6 @@ public class Enemy : Entity
                 destroyTime = 0;
             }
         }
-
     }
 
     private void OnEnable()
@@ -116,10 +138,6 @@ public class Enemy : Entity
             spawn.UpdetEnemyTracer(getId());
             spawn.RemoveGenerationUnit(progId);
         }
-
-        game.updateScore(grantScore);
-        Destroy(hpBarReference);
-        this.ai.isStopped = true;
     }
 
     private void SpawnHealthBar()

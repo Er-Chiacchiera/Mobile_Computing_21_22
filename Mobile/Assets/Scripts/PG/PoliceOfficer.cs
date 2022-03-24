@@ -24,11 +24,6 @@ public class PoliceOfficer : Shooter
         // Update is called once per frame
         void Update()
     {
-        if (base.getHealth() <= 0)
-        {
-            Destroy(gameObject);
-        }
-
         base.Update();
     }
 

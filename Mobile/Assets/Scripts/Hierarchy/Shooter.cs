@@ -30,12 +30,6 @@ public abstract class Shooter : Enemy
     {
         
         base.Update();
-
-        if (base.getHealth() <= 0)
-        {
-            Destroy(gameObject);
-        }
-
         
         if (base.isInScope)
         {
