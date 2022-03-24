@@ -77,10 +77,8 @@ public class Enemy : Entity
 
         if(getHealth() <= 0)
         {
-            
             Destroy(gameObject);
             game.updateScore(grantScore);
-            Destroy(hpBarReference);
 
             //da valutare le seguenti aggiunte
             /*
@@ -105,7 +103,6 @@ public class Enemy : Entity
         {
             if (distance > limitDistance)
             {
-                this.grantScore = 0;
                 Destroy(gameObject);
             }
 
@@ -130,8 +127,10 @@ public class Enemy : Entity
 
     private void OnDestroy()
     {
+
+        Destroy(hpBarReference);
         //aggiorno le statistiche dello spawner
-        if(generationId != -1)
+        if (generationId != -1)
             spawn.UpdetGeneratedEnemyTracer(generationId);
         else
         {
