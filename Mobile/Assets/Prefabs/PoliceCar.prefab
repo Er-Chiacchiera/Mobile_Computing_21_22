@@ -327,12 +327,12 @@ MonoBehaviour:
   dmg: 0
   fireRate: 0
   maxHealth: 60
-  speed: 1.5
+  speed: 2
   rigidBody: {fileID: 948691392659394251}
   animator: {fileID: 2108944154723011956}
   grantScore: 20
-  stopDistance: 6
-  limitDistance: 10
+  stopDistance: 10
+  limitDistance: 30
   hpBar: {fileID: 7479689915047091773, guid: 0976a819a97b3ad46a54cdb03bae1cfd, type: 3}
   maxSpawn: 1
   spawnRate: 0.15

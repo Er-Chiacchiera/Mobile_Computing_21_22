@@ -248,7 +248,7 @@ MonoBehaviour:
   rigidBody: {fileID: 7963374897363076874}
   animator: {fileID: 5669753654235546649}
   grantScore: 5
-  stopDistance: 4
+  stopDistance: 6
   limitDistance: 15
   hpBar: {fileID: 7479689915047091773, guid: 0976a819a97b3ad46a54cdb03bae1cfd, type: 3}
   firePoints:

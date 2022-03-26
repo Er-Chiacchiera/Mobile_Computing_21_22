@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : Entity
 {
 
-    private static float onDeathTime = 10.0f;
+    //private static float onDeathTime = 10.0f;
     public Animator animator;
 
     //score parameter
@@ -52,6 +52,7 @@ public class Enemy : Entity
         spawn = GameObject.Find("GameController").GetComponent<Spawn>();
         game = GameObject.Find("GameController").GetComponent<GameHandler>();
         ai = GetComponent<IAstarAI>();
+        ai.maxSpeed = base.getSpeed();
         ai.onSearchPath += Update;
     }
 

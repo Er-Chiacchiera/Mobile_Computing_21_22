@@ -331,8 +331,8 @@ MonoBehaviour:
   rigidBody: {fileID: 948691392659394251}
   animator: {fileID: 2108944154723011956}
   grantScore: 40
-  stopDistance: 7
-  limitDistance: 15
+  stopDistance: 10
+  limitDistance: 30
   hpBar: {fileID: 7479689915047091773, guid: 0976a819a97b3ad46a54cdb03bae1cfd, type: 3}
   maxSpawn: 1
   spawnRate: 0.15
