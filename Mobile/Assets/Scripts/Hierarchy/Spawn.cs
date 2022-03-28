@@ -32,6 +32,7 @@ public class Spawn : MonoBehaviour
 
     public GameObject footpath;
     public GameObject border;
+    public Camera playerView;
 
     private void Start()
     {
@@ -132,8 +133,14 @@ public class Spawn : MonoBehaviour
 
             Vector2 spawnPos = new Vector2(xPos, yPos);
 
-            Instantiate(spawnSubject, spawnPos, Quaternion.identity).GetComponent<Enemy>().setProgId(idProgression += 1);
-            enemyTracer[id] += 1;
+
+            if (!playerView.rect.Contains(spawnPos))
+            {
+                Instantiate(spawnSubject, spawnPos, Quaternion.identity).GetComponent<Enemy>().setProgId(idProgression += 1);
+                enemyTracer[id] += 1;
+            }
+            else waitingSecond = 0;
+            
         }
 
         yield return new WaitForSeconds(waitingSecond);
@@ -158,7 +165,7 @@ public class Spawn : MonoBehaviour
             float yPos = Random.Range(islandYMin, islandYMax);
             Vector2 spawnPos = new Vector2(xPos, yPos);
 
-            if (!footpath.GetComponent<Tilemap>().HasTile(new Vector3Int((int)xPos, (int)yPos)) && !border.GetComponent<Tilemap>().HasTile(new Vector3Int((int)xPos, (int)yPos)))
+            if (!footpath.GetComponent<Tilemap>().HasTile(new Vector3Int((int)xPos, (int)yPos)) && !border.GetComponent<Tilemap>().HasTile(new Vector3Int((int)xPos, (int)yPos)) && !playerView.rect.Contains(spawnPos))
             {
                 enemyTracer[id] += 1;
                 Instantiate(spawnSubject, spawnPos, Quaternion.identity).GetComponent<Enemy>().setProgId(idProgression += 1);
