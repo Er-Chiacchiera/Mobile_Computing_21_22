@@ -8,22 +8,23 @@ TagManager:
   - Robot
   - PoliceMan
   - Enemy
+  - Ability
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Sea
   - Water
   - UI
-  - 
   - Sidewalk
-  - Mappa
   - Minimap
+  - Ability
+  - Mappa
   - Robot
   - GroundEnemy
   - FlyingEnemy
-  - 
-  - 
+  - Bullet
+  - Obstacle
   - 
   - 
   - 
