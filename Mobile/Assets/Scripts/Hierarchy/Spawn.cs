@@ -168,7 +168,9 @@ public class Spawn : MonoBehaviour
             if (!footpath.GetComponent<Tilemap>().HasTile(new Vector3Int((int)xPos, (int)yPos)) && !border.GetComponent<Tilemap>().HasTile(new Vector3Int((int)xPos, (int)yPos)) && !playerView.rect.Contains(spawnPos))
             {
                 enemyTracer[id] += 1;
-                Instantiate(spawnSubject, spawnPos, Quaternion.identity).GetComponent<Enemy>().setProgId(idProgression += 1);
+
+                GameObject obj = Instantiate(spawnSubject, spawnPos, Quaternion.identity);
+                if (obj.GetComponent<Enemy>() != null) obj.GetComponent<Enemy>().setProgId(idProgression += 1);
             }
             else waitingSecond = 0;
                         
@@ -178,9 +180,7 @@ public class Spawn : MonoBehaviour
         yield return dropInsideMap(spawnSubject, maxSpawn, spawnRate, id);
     }
 
-
-
-        public void UpdetEnemyTracer(int key) { if (enemyTracer.ContainsKey(key)) enemyTracer[key] -= 1; }
+    public void UpdetEnemyTracer(int key) { if (enemyTracer.ContainsKey(key)) enemyTracer[key] -= 1; }
 
     public void UpdetGeneratedEnemyTracer(int key) { if (generatedEnemyTracer.ContainsKey(key)) generatedEnemyTracer[key] -= 1; }
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,7 +29,7 @@ public class Player : Entity
     public Image frontHealthBar;
     public Image redBackHealthBar;
     public Image greenBackHealthBar;
-
+    public TextMeshProUGUI healthBarText;
 
 
 
@@ -46,6 +47,7 @@ public class Player : Entity
         UpdateHealthUI();
         healthPlusMinus();
         setHealth(Mathf.Clamp(getHealth(), 0, getMaxHealth()));
+        healthBarText.text = base.getHealth().ToString() + "/" + base.getMaxHealth().ToString();
 
         //variabili
         float horizontalMove = 0f;
