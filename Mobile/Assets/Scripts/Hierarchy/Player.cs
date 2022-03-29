@@ -49,6 +49,12 @@ public class Player : Entity
         setHealth(Mathf.Clamp(getHealth(), 0, getMaxHealth()));
         healthBarText.text = base.getHealth().ToString() + "/" + base.getMaxHealth().ToString();
 
+        if(base.getHealth() <= 0)
+        {
+            FindObjectOfType<GameHandler>().gameOver();
+        }
+
+
         //variabili
         float horizontalMove = 0f;
         float verticalMove = 0f;

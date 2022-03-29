@@ -4,6 +4,7 @@ using UnityEngine;
 using Pathfinding;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameHandler : MonoBehaviour
 {
@@ -20,8 +21,9 @@ public class GameHandler : MonoBehaviour
     public GameObject militaryJeep;
     public GameObject playerBody;
 
-    //private Entity player;
-    //private List<Entity> enemies;
+    //GameOver Stuff
+    private bool gameHasEnded = false;
+    public GameObject gameOverMenu; 
 
     void Start()
     {
@@ -41,8 +43,15 @@ public class GameHandler : MonoBehaviour
     public float getScore(){ return this.score; }
     public void updateScore(float value) { this.score += value; }
 
-    //public void setPlayer(Entity value) { this.player = value; }
-    //public Entity getPlayer() { return this.player; }
-
+    public void gameOver()
+    {
+        if (gameHasEnded == false)
+        {
+            gameHasEnded = true;
+            Time.timeScale = 0f;
+            gameOverMenu.GetComponentInChildren<TextMeshProUGUI>().text = "Current Score: " +  score.ToString();
+            gameOverMenu.SetActive(true);
+        }
+    }
 
 }
