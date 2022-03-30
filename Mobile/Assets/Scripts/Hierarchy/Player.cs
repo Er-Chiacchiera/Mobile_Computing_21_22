@@ -20,6 +20,13 @@ public class Player : Entity
     public Image greenBackHealthBar;
     public TextMeshProUGUI healthBarText;
 
+    //shield stuff
+    private bool shieldActivated;
+    private float shieldValue;
+    private float maxShieldValue = 50f;
+
+    //shield bar stuff
+    private float lerpTimerShieldBar;
     public Image frontShieldBar;
 
     public Player() : base() { }
@@ -28,11 +35,15 @@ public class Player : Entity
     {
         base.Start();
         base.setId(id);
+
+        shieldValue = maxShieldValue;
+        shieldActivated = true;
     }
 
     void Update()
     {
         UpdateHealthUI();
+        ShieldHandler();
         //HealthPlusMinus();
         setHealth(Mathf.Clamp(getHealth(), 0, getMaxHealth()));
         healthBarText.text = base.getHealth().ToString() + "/" + base.getMaxHealth().ToString();
@@ -89,7 +100,7 @@ public class Player : Entity
         return base.getHealth() == base.getMaxHealth();
     }
 
-    public void UpdateHealthUI()
+    private void UpdateHealthUI()
     {
         float fillFrontBar = frontHealthBar.fillAmount;
         float fillRedBar = redBackHealthBar.fillAmount;
@@ -100,10 +111,10 @@ public class Player : Entity
             frontHealthBar.fillAmount = healthFraction;
             greenBackHealthBar.fillAmount = healthFraction;
 
-            float percentComplete = lerpTimer / chipSpeed;
-            if (lerpTimer < chipSpeed)
+            float percentComplete = lerpTimerHealthBar / chipSpeed;
+            if (lerpTimerHealthBar < chipSpeed)
             {
-                lerpTimer += Time.deltaTime;
+                lerpTimerHealthBar += Time.deltaTime;
                 redBackHealthBar.fillAmount = Mathf.Lerp(fillRedBar, healthFraction, percentComplete);
             }
             else
@@ -116,10 +127,10 @@ public class Player : Entity
         {
             greenBackHealthBar.fillAmount = healthFraction;
 
-            float percentComplete = lerpTimer / chipSpeed;
-            if (lerpTimer + 0.1f < chipSpeed)
+            float percentComplete = lerpTimerHealthBar / chipSpeed;
+            if (lerpTimerHealthBar + 0.1f < chipSpeed)
             {
-                lerpTimer += Time.deltaTime;
+                lerpTimerHealthBar += Time.deltaTime;
                 frontHealthBar.fillAmount = Mathf.Lerp(fillFrontBar, healthFraction, percentComplete);
             }
             else
@@ -136,12 +147,12 @@ public class Player : Entity
         if (Input.GetKeyDown(KeyCode.A))
         {
             subHealth(10f);
-            lerpTimer = 0f;
+            lerpTimerHealthBar = 0f;
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
             subHealth(-10f);
-            lerpTimer = 0f;
+            lerpTimerHealthBar = 0f;
         }
     }
 
@@ -152,9 +163,27 @@ public class Player : Entity
         {
             //danni proiettile
             float currDmg = collision.gameObject.GetComponent<Bullet>().GetDmg();
-            base.subHealth(currDmg);
-            lerpTimer = 0f;
+            if (shieldActivated)
+            {
+                shieldValue -= currDmg;
+                lerpTimerShieldBar = 0f;
+                if (shieldValue <= 0)
+                {
+                    shieldActivated = false;
+                    shieldValue = 0;
+                }
+            }
+            else
+            {
+                base.subHealth(currDmg);
+                lerpTimerHealthBar = 0f;
+            }
         }
+    }
+
+    private void ShieldHandler()
+    {
+        frontShieldBar.fillAmount = shieldValue / maxShieldValue;
     }
 
     public void OnDestroy()

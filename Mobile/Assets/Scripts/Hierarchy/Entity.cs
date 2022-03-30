@@ -11,7 +11,7 @@ public class Entity : MonoBehaviour
     [SerializeField] private float speed;
     private int id;
 
-    protected float lerpTimer; //serve per la health bar del player
+    protected float lerpTimerHealthBar; //serve per la health bar del player
 
     public Rigidbody2D rigidBody;
 

@@ -170,7 +170,7 @@ public class Enemy : Entity
             //danni proiettile
             float currDmg = collision.gameObject.GetComponent<Bullet>().GetDmg();
             base.subHealth(currDmg);
-            lerpTimer = 0f;
+            lerpTimerHealthBar = 0f;
         }
     }
 
