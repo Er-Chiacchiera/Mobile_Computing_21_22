@@ -191,9 +191,4 @@ public class Player : Entity
             lerpTimer = 0f;
         }
     }
-    public void OnDestroy()
-    {
-        //fai partire il game over!!
-    }
-
 }
