@@ -20,6 +20,8 @@ public class Player : Entity
     public Image greenBackHealthBar;
     public TextMeshProUGUI healthBarText;
 
+    public Image frontShieldBar;
+
     public Player() : base() { }
 
     new void Start()
@@ -31,7 +33,7 @@ public class Player : Entity
     void Update()
     {
         UpdateHealthUI();
-        HealthPlusMinus();
+        //HealthPlusMinus();
         setHealth(Mathf.Clamp(getHealth(), 0, getMaxHealth()));
         healthBarText.text = base.getHealth().ToString() + "/" + base.getMaxHealth().ToString();
 
@@ -40,11 +42,7 @@ public class Player : Entity
             FindObjectOfType<GameHandler>().gameOver();
         }
 
-        //valore movimento
-        movement = CalcoloSpostamento();
-        //spostamento
-        Sposta();
-
+        CalcoloSpostamento();
     }
 
 
@@ -54,7 +52,7 @@ public class Player : Entity
         base.rigidBody.MovePosition(rigidBody.position + movement * base.getSpeed() * Time.fixedDeltaTime);
     }
 
-    private Vector2 CalcoloSpostamento()
+    private void CalcoloSpostamento()
     {
         float horizontalMove = 0f;
         float verticalMove = 0f;
@@ -74,12 +72,8 @@ public class Player : Entity
             verticalMove = -this.getSpeed();
 
         //valore movimento
-        return new Vector2(horizontalMove, verticalMove);
-    }
-
-    private void Sposta()
-    {
-        base.rigidBody.MovePosition(movement * Time.deltaTime);
+        movement.x = horizontalMove;
+        movement.y = verticalMove;
     }
 
     public void RestoreHp(float value) //value espressa in percentuale
@@ -90,7 +84,7 @@ public class Player : Entity
         else base.setHealth(base.getMaxHealth());
     }
 
-    public bool fullHealth()
+    public bool FullHealth()
     {
         return base.getHealth() == base.getMaxHealth();
     }
@@ -150,6 +144,19 @@ public class Player : Entity
             lerpTimer = 0f;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //se coolide con un proiettile 
+        if (collision.gameObject.tag == "Bullet" && base.getId() != collision.gameObject.GetComponent<Bullet>().GetId())
+        {
+            //danni proiettile
+            float currDmg = collision.gameObject.GetComponent<Bullet>().GetDmg();
+            base.subHealth(currDmg);
+            lerpTimer = 0f;
+        }
+    }
+
     public void OnDestroy()
     {
         //fai partire il game over!!

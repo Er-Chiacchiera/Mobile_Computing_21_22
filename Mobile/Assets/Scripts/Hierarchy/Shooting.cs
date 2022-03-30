@@ -17,7 +17,7 @@ public class Shooting : MonoBehaviour
 
     private float lastShot = 0.0f;
 
-    private float distanzaJ = 0.5f; //distanza joystick dal centro per sparare
+    private readonly float distanzaJ = 0.5f; //distanza joystick dal centro per sparare
 
     //parametri proiettile base
     private readonly float baseFireRate = 9f;
