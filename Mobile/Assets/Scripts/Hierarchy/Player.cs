@@ -91,9 +91,10 @@ public class Player : Entity
     public void RestoreHp(float value) //value espressa in percentuale
     {
         float newHealt = base.getHealth() + base.getMaxHealth() * value;
-
+        lerpTimerHealthBar = 0f;
         if (newHealt < base.getMaxHealth()) base.setHealth(newHealt);
         else base.setHealth(base.getMaxHealth());
+
     }
 
     public bool FullHealth()
@@ -107,7 +108,7 @@ public class Player : Entity
         float fillRedBar = redBackHealthBar.fillAmount;
         float healthFraction = getHealth() / getMaxHealth();
 
-        if (fillRedBar + 0.1f > healthFraction) //se true significa che il player ha preso danno
+        if (fillRedBar > healthFraction) //se true significa che il player ha preso danno
         {
             frontHealthBar.fillAmount = healthFraction;
             greenBackHealthBar.fillAmount = healthFraction;
