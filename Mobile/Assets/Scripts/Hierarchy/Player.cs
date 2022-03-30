@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,7 +29,7 @@ public class Player : Entity
     public Image frontHealthBar;
     public Image redBackHealthBar;
     public Image greenBackHealthBar;
-
+    public TextMeshProUGUI healthBarText;
 
 
 
@@ -46,6 +47,13 @@ public class Player : Entity
         UpdateHealthUI();
         healthPlusMinus();
         setHealth(Mathf.Clamp(getHealth(), 0, getMaxHealth()));
+        healthBarText.text = base.getHealth().ToString() + "/" + base.getMaxHealth().ToString();
+
+        if(base.getHealth() <= 0)
+        {
+            FindObjectOfType<GameHandler>().gameOver();
+        }
+
 
         //variabili
         float horizontalMove = 0f;
@@ -183,9 +191,4 @@ public class Player : Entity
             lerpTimer = 0f;
         }
     }
-    public void OnDestroy()
-    {
-        //fai partire il game over!!
-    }
-
 }

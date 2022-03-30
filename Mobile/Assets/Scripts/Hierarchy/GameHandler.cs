@@ -4,6 +4,7 @@ using UnityEngine;
 using Pathfinding;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameHandler : MonoBehaviour
 {
@@ -13,17 +14,21 @@ public class GameHandler : MonoBehaviour
     private Spawn spawner;
     [SerializeField]
     private float spawnRate = 0.15f;
+
+    public GameObject wrench;
     public GameObject policeCar;
     public GameObject helicopter;
     public GameObject militaryJeep;
     public GameObject playerBody;
 
-    //private Entity player;
-    //private List<Entity> enemies;
+    //GameOver Stuff
+    private bool gameHasEnded = false;
+    public GameObject gameOverMenu; 
 
     void Start()
     {
         spawner = this.GetComponent<Spawn>();
+        StartCoroutine(spawner.dropInsideMap(wrench, 10, 99, 10));
         StartCoroutine(spawner.dropInsideMap(policeCar, 4, spawnRate, 1));
         StartCoroutine(spawner.RandomDrop(helicopter, 2, spawnRate, 3));
         StartCoroutine(spawner.dropInsideMap(militaryJeep, 3, (spawnRate-0.05f), 4));
@@ -38,8 +43,15 @@ public class GameHandler : MonoBehaviour
     public float getScore(){ return this.score; }
     public void updateScore(float value) { this.score += value; }
 
-    //public void setPlayer(Entity value) { this.player = value; }
-    //public Entity getPlayer() { return this.player; }
-
+    public void gameOver()
+    {
+        if (gameHasEnded == false)
+        {
+            gameHasEnded = true;
+            Time.timeScale = 0f;
+            gameOverMenu.GetComponentInChildren<TextMeshProUGUI>().text = "Current Score: " +  score.ToString();
+            gameOverMenu.SetActive(true);
+        }
+    }
 
 }
