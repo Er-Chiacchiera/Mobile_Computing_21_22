@@ -162,6 +162,18 @@ public class Enemy : Entity
         hpBarReference.GetComponentInChildren<Transform>().localScale = scale;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //se coolide con un proiettile 
+        if (collision.gameObject.tag == "Bullet" && base.getId() != collision.gameObject.GetComponent<Bullet>().GetId())
+        {
+            //danni proiettile
+            float currDmg = collision.gameObject.GetComponent<Bullet>().GetDmg();
+            base.subHealth(currDmg);
+            lerpTimerHealthBar = 0f;
+        }
+    }
+
     public void setGenerationId (int value) {this.generationId = value; }
 
     public void setProgId(int value) { this.progId = value; }

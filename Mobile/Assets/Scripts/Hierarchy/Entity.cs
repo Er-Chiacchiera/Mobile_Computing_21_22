@@ -11,7 +11,7 @@ public class Entity : MonoBehaviour
     [SerializeField] private float speed;
     private int id;
 
-    protected float lerpTimer; //serve per la health bar del player
+    protected float lerpTimerHealthBar; //serve per la health bar del player
 
     public Rigidbody2D rigidBody;
 
@@ -49,18 +49,4 @@ public class Entity : MonoBehaviour
     public int getId() { return id; }
 
     public void subHealth(float value) { this.health -= value; }
-
-    private void OnTriggerEnter2D(Collider2D collision) 
-    {
-        //se coolide con un proiettile 
-        if (collision.gameObject.tag == "Bullet" && this.id != collision.gameObject.GetComponent<Bullet>().GetId())  
-        {
-            //danni proiettile
-            float currDmg = collision.gameObject.GetComponent<Bullet>().GetDmg();
-            this.subHealth(currDmg);
-            lerpTimer = 0f;
-        }
-    }
-
-
 }

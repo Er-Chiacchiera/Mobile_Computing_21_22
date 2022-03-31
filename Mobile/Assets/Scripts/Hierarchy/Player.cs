@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 
 
@@ -11,27 +11,22 @@ public class Player : Entity
 
     //Joystick
     public Joystick movJoystick;
-    public Joystick aimJoystick;
     private Vector2 movement;
-    private Vector2 direction;
-
-    //shooting
-    public Transform firePointDx;
-    public Transform firePointSx;
-    public GameObject bulletPrefab;
-    private float lastShot = 0.0f;
-    private float distanzaJ = 0.5f; //distanza joystick per sparare
-    [SerializeField]
-    public float bulletVelocity = 5; //velocit� proiettile
 
     //health bar stuff (float lerpTimer in Entity.cs)
-    public float chipSpeed = 2f;
+    public float totalLerpTime = 2f;
     public Image frontHealthBar;
     public Image redBackHealthBar;
     public Image greenBackHealthBar;
     public TextMeshProUGUI healthBarText;
 
+    //shield
+    private bool shieldActivated;
+    private float shieldValue;
+    private float maxShieldValue = 50f;
 
+    //shield bar stuff
+    public Image frontShieldBar;
 
     public Player() : base() { }
 
@@ -39,23 +34,38 @@ public class Player : Entity
     {
         base.Start();
         base.setId(id);
+
+        shieldValue = maxShieldValue;
+        shieldActivated = true;
     }
 
     void Update()
     {
-        
         UpdateHealthUI();
-        healthPlusMinus();
+        UpdateShieldUI();
+        HealthPlusMinus();
         setHealth(Mathf.Clamp(getHealth(), 0, getMaxHealth()));
         healthBarText.text = base.getHealth().ToString() + "/" + base.getMaxHealth().ToString();
 
-        if(base.getHealth() <= 0)
+        if (base.getHealth() <= 0)
         {
             FindObjectOfType<GameHandler>().gameOver();
         }
 
+        CalcoloSpostamento();
+    }
 
-        //variabili
+
+    private void FixedUpdate()
+    {
+        //movimento
+        base.rigidBody.MovePosition(rigidBody.position + movement * base.getSpeed() * Time.fixedDeltaTime);
+
+        RechargeShield(0.15f);
+    }
+
+    private void CalcoloSpostamento()
+    {
         float horizontalMove = 0f;
         float verticalMove = 0f;
 
@@ -65,8 +75,6 @@ public class Player : Entity
         else
             if (movJoystick.Horizontal < -0.2f)
             horizontalMove = -this.getSpeed();
-        else
-            horizontalMove = 0;
 
         //valori spostamento verticale
         if (movJoystick.Vertical > 0.2f)
@@ -74,99 +82,57 @@ public class Player : Entity
         else
             if (movJoystick.Vertical < -0.2f)
             verticalMove = -this.getSpeed();
-        else
-            verticalMove = 0;
 
         //valore movimento
-        movement = new Vector2(horizontalMove, verticalMove);
-
-        //valore mira
-        direction.x = aimJoystick.Horizontal;
-        direction.y = aimJoystick.Vertical;
-
-        //spostamento
-        base.rigidBody.MovePosition(movement * Time.deltaTime);
-
+        movement.x = horizontalMove;
+        movement.y = verticalMove;
     }
-
-
-    private void FixedUpdate()
-    {
-        //movimento
-        base.rigidBody.MovePosition(rigidBody.position + movement * base.getSpeed() * Time.fixedDeltaTime);
-
-        //rotazione
-        if (direction.x != 0 && direction.y != 0)
-        {
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
-            rigidBody.rotation = angle;
-        }
-
-        //shooting
-        if ((direction.x < -distanzaJ || direction.x > distanzaJ || direction.y < -distanzaJ || direction.y > distanzaJ) && base.getFireRate() != 0 && (Time.time > (1f / base.getFireRate()) + lastShot))
-        {
-            Shoot(firePointDx);
-            Shoot(firePointSx);
-        }
-        
-    }
-
 
     public void RestoreHp(float value) //value espressa in percentuale
     {
         float newHealt = base.getHealth() + base.getMaxHealth() * value;
-
-        if (newHealt < base.getMaxHealth())  base.setHealth(newHealt);
+        lerpTimerHealthBar = 0f;
+        if (newHealt < base.getMaxHealth()) base.setHealth(newHealt);
         else base.setHealth(base.getMaxHealth());
+
     }
 
-    public bool fullHealth()
+    public bool FullHealth()
     {
         return base.getHealth() == base.getMaxHealth();
     }
 
-    void Shoot(Transform firePoint)
-    {
-        lastShot = Time.time;
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(firePoint.up * bulletVelocity, ForceMode2D.Impulse);
-        //setting danno proiettile destro
-        bullet.GetComponent<Bullet>().SetDmg(base.getDmg()); 
-        bullet.GetComponent<Bullet>().SetId(base.getId());
-    }
-
-    public void UpdateHealthUI()
+    private void UpdateHealthUI()
     {
         float fillFrontBar = frontHealthBar.fillAmount;
         float fillRedBar = redBackHealthBar.fillAmount;
         float healthFraction = getHealth() / getMaxHealth();
 
-        if (fillRedBar + 0.1f > healthFraction) //se true significa che il player ha preso danno
+        if (fillRedBar > healthFraction) //se true significa che il player ha preso danno
         {
             frontHealthBar.fillAmount = healthFraction;
             greenBackHealthBar.fillAmount = healthFraction;
-            
-            float percentComplete = lerpTimer / chipSpeed;
-            if (lerpTimer < chipSpeed)
+
+            float percentComplete = lerpTimerHealthBar / totalLerpTime;
+            if (lerpTimerHealthBar < totalLerpTime)
             {
-                lerpTimer += Time.deltaTime;
+                lerpTimerHealthBar += Time.deltaTime;
                 redBackHealthBar.fillAmount = Mathf.Lerp(fillRedBar, healthFraction, percentComplete);
             }
             else
             {
                 redBackHealthBar.fillAmount = healthFraction;
-            }            
+            }
         }
 
-        if (fillFrontBar < healthFraction) //se true significa che il player si � curato
+        if (fillFrontBar < healthFraction) //se true significa che il player si è curato
         {
-            greenBackHealthBar.fillAmount = healthFraction;          
+            greenBackHealthBar.fillAmount = healthFraction;
 
-            float percentComplete = lerpTimer / chipSpeed;
-            if (lerpTimer + 0.1f < chipSpeed)
+            float percentComplete = lerpTimerHealthBar / totalLerpTime;
+            if (lerpTimerHealthBar + 0.1f < totalLerpTime)
             {
-                lerpTimer += Time.deltaTime;
+                lerpTimerHealthBar += Time.deltaTime;
                 frontHealthBar.fillAmount = Mathf.Lerp(fillFrontBar, healthFraction, percentComplete);
             }
             else
@@ -178,17 +144,62 @@ public class Player : Entity
 
     }
 
-    private void healthPlusMinus()
+    private void HealthPlusMinus()
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
             subHealth(10f);
-            lerpTimer = 0f;
+            lerpTimerHealthBar = 0f;
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
             subHealth(-10f);
-            lerpTimer = 0f;
+            lerpTimerHealthBar = 0f;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //se coolide con un proiettile 
+        if (collision.gameObject.tag == "Bullet" && base.getId() != collision.gameObject.GetComponent<Bullet>().GetId())
+        {
+            //danni proiettile
+            float currDmg = collision.gameObject.GetComponent<Bullet>().GetDmg();
+            if (shieldActivated)
+            {
+                shieldValue -= currDmg;
+                if (shieldValue <= 0)
+                {
+                    shieldActivated = false;
+                    shieldValue = 0;
+                }
+            }
+            else
+            {
+                base.subHealth(currDmg);
+                lerpTimerHealthBar = 0f;
+            }
+        }
+    }
+
+    private void UpdateShieldUI()
+    {
+        frontShieldBar.fillAmount = shieldValue / maxShieldValue;
+    }
+
+    private void RechargeShield(float valuePerFrame)
+    {
+        if (shieldActivated)
+        {
+            if (shieldValue < maxShieldValue)
+            {
+                shieldValue += valuePerFrame;
+            }
+        }
+    }
+    public void OnDestroy()
+    {
+        //fai partire il game over!!
+    }
+
 }

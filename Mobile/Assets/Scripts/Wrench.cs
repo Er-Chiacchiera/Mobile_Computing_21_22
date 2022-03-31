@@ -16,7 +16,7 @@ public class Wrench : MonoBehaviour
         {
             GameObject robot = collision.gameObject;
 
-            if (!robot.GetComponent<Player>().fullHealth())
+            if (!robot.GetComponent<Player>().FullHealth())
             {
                 Destroy(gameObject);
                 collision.gameObject.GetComponent<Player>().RestoreHp(0.2f);
