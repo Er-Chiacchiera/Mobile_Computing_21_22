@@ -23,7 +23,9 @@ public class Player : Entity
     //shield
     private bool shieldActivated;
     private float shieldValue;
+    [SerializeField]
     private float maxShieldValue = 50f;
+    public TextMeshProUGUI shielsBarText;
 
     //shield bar stuff
     public Image frontShieldBar;
@@ -46,6 +48,7 @@ public class Player : Entity
         HealthPlusMinus();
         setHealth(Mathf.Clamp(getHealth(), 0, getMaxHealth()));
         healthBarText.text = base.getHealth().ToString() + "/" + base.getMaxHealth().ToString();
+        shielsBarText.text = ((int)shieldValue).ToString() + "/" + ((int)maxShieldValue).ToString();
 
         if (base.getHealth() <= 0)
         {
@@ -196,10 +199,6 @@ public class Player : Entity
                 shieldValue += valuePerFrame;
             }
         }
-    }
-    public void OnDestroy()
-    {
-        //fai partire il game over!!
     }
 
 }

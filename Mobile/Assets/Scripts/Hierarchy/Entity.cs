@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    [SerializeField] private float dmg;
-    [SerializeField] private float fireRate;
+
     [SerializeField] private float maxHealth;
     private float health;
     [SerializeField] private float speed;
@@ -30,12 +29,6 @@ public class Entity : MonoBehaviour
 
     public void setHealth (float value) { this.health = value; }
     public float getHealth() { return this.health; }
-
-    public void setDmg(float value) { this.dmg = value; }
-    public float getDmg() { return this.dmg; }
-
-    public void setFireRate(float value) { this.fireRate = value; }
-    public float getFireRate() { return this.fireRate; }
 
     public void setMaxHealth(float value) { this.maxHealth = value; }
     public float getMaxHealth() { return this.maxHealth; }

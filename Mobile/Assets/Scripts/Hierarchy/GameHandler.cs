@@ -28,10 +28,10 @@ public class GameHandler : MonoBehaviour
     void Start()
     {
         spawner = this.GetComponent<Spawn>();
-        StartCoroutine(spawner.dropInsideMap(wrench, 10, 99, 10));
-        StartCoroutine(spawner.dropInsideMap(policeCar, 4, spawnRate, 1));
-        StartCoroutine(spawner.RandomDrop(helicopter, 2, spawnRate, 3));
-        StartCoroutine(spawner.dropInsideMap(militaryJeep, 3, (spawnRate-0.05f), 4));
+        StartCoroutine(spawner.dropInsideMap(wrench, 10, 99, playerBody, 10));
+        StartCoroutine(spawner.dropInsideMap(policeCar, 4, spawnRate, playerBody, 1));
+        StartCoroutine(spawner.RandomDrop(helicopter, 2, spawnRate, playerBody, 3));
+        StartCoroutine(spawner.dropInsideMap(militaryJeep, 3, (spawnRate-0.05f), playerBody, 4));
     }
 
     void Update()
