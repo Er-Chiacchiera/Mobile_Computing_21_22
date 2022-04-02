@@ -47,8 +47,8 @@ public class Shooting : MonoBehaviour
         }
 
         if (idWeapon == 1) Shoot(bulletPrefabBase, baseFireRate, baseDamage, baseVelocity);
-        if (idWeapon == 2) Shoot(bulletPrefabLaser, 30f, 3f, 40.0f);
-        if (idWeapon == 3) Shoot(bulletPrefabRazzo, 1, 10, 5.0f);
+        if (idWeapon == 2) Shoot(bulletPrefabRazzo, 1, 10, 5.0f);  //da parametrizzare
+        if (idWeapon == 3) Shoot(bulletPrefabLaser, 30f, 3f, 40.0f); //da parametrizzare
 
     }
 
@@ -61,15 +61,11 @@ public class Shooting : MonoBehaviour
 
             //sx
             GameObject bullet1 = Instantiate(bulletPrefab, firePointSx.position, firePointSx.rotation);
-            Rigidbody2D rb1 = bullet1.GetComponent<Rigidbody2D>();
-            rb1.AddForce(firePointSx.up * velocity, ForceMode2D.Impulse);
             bullet1.GetComponent<Bullet>().SetDmg(dmg);
             bullet1.GetComponent<Bullet>().SetId(idRobot);
 
             //dx
             GameObject bullet2 = Instantiate(bulletPrefab, firePointDx.position, firePointDx.rotation);
-            Rigidbody2D rb2 = bullet2.GetComponent<Rigidbody2D>();
-            rb2.AddForce(firePointDx.up * velocity, ForceMode2D.Impulse);
             bullet2.GetComponent<Bullet>().SetDmg(dmg);
             bullet2.GetComponent<Bullet>().SetId(idRobot);
         }

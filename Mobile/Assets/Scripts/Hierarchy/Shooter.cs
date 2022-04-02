@@ -77,6 +77,5 @@ public abstract class Shooter : Enemy
         //setting danno proiettile
         bullet.GetComponent<Bullet>().SetDmg(base.getDmg()); //proprietaria della classe bullet
         bullet.GetComponent<Bullet>().SetId(base.getId());
-        rb.AddForce(firePoint.up * bullet.GetComponent<Bullet>().bulletVelocity, ForceMode2D.Impulse);
     }
 }

@@ -31,6 +31,8 @@ public class Enemy : Entity
     protected Spawn spawn;
     private int generationId = -1; //identifica l'unità che mi ha generato (-1 valore non valido)
     protected int progId = -1; //identifica l'ordine di generazione del'unità
+    [SerializeField] private float dmg;
+    [SerializeField] private float fireRate;
 
     //healthbar
     public GameObject hpBar;
@@ -177,6 +179,12 @@ public class Enemy : Entity
     public void setGenerationId (int value) {this.generationId = value; }
 
     public void setProgId(int value) { this.progId = value; }
+
+    public void setDmg(float value) { this.dmg = value; }
+    public float getDmg() { return this.dmg; }
+
+    public void setFireRate(float value) { this.fireRate = value; }
+    public float getFireRate() { return this.fireRate; }
 
 }
 

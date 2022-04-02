@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wrench : MonoBehaviour
+public abstract class PowerUp : MonoBehaviour
 {
     [SerializeField]
     private float rotationSpeed = 0.6f;
@@ -19,8 +19,11 @@ public class Wrench : MonoBehaviour
             if (!robot.GetComponent<Player>().FullHealth())
             {
                 Destroy(gameObject);
-                collision.gameObject.GetComponent<Player>().RestoreHp(0.2f);
+                interaction(collision);
             }
         }
     }
+
+    public abstract void interaction(Collider2D collision);
+
 }

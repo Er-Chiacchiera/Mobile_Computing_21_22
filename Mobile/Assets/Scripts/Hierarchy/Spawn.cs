@@ -32,7 +32,8 @@ public class Spawn : MonoBehaviour
 
     public GameObject footpath;
     public GameObject border;
-    public Camera playerView;
+    
+
 
     private void Start()
     {
@@ -116,7 +117,7 @@ public class Spawn : MonoBehaviour
         yield return SpawnNearPlayer(spawnSubject, maxSpawn, spawnRate, playerBody, id);
     }
 
-    public IEnumerator RandomDrop(GameObject spawnSubject, int maxSpawn, float spawnRate, int id)
+    public IEnumerator RandomDrop(GameObject spawnSubject, int maxSpawn, float spawnRate, GameObject playerBody, int id)
     {
         float waitingSecond = 1 / spawnRate;
         int spawnCounter = 0;
@@ -132,9 +133,9 @@ public class Spawn : MonoBehaviour
             float yPos = Random.Range(yMin, yMax);
 
             Vector2 spawnPos = new Vector2(xPos, yPos);
+            Rect playerView = new Rect(playerBody.GetComponent<Transform>().position.x - 11, playerBody.GetComponent<Transform>().position.y - 5, 22, 10);
 
-
-            if (!playerView.rect.Contains(spawnPos))
+            if (!playerView.Contains(spawnPos))
             {
                 Instantiate(spawnSubject, spawnPos, Quaternion.identity).GetComponent<Enemy>().setProgId(idProgression += 1);
                 enemyTracer[id] += 1;
@@ -144,11 +145,11 @@ public class Spawn : MonoBehaviour
         }
 
         yield return new WaitForSeconds(waitingSecond);
-        yield return RandomDrop(spawnSubject, maxSpawn, spawnRate, id);
+        yield return RandomDrop(spawnSubject, maxSpawn, spawnRate, playerBody, id);
     }
 
 
-    public IEnumerator dropInsideMap(GameObject spawnSubject, int maxSpawn, float spawnRate, int id)
+    public IEnumerator dropInsideMap(GameObject spawnSubject, int maxSpawn, float spawnRate, GameObject playerBody, int id)
     {
         float waitingSecond = 1 / spawnRate;
         int spawnCounter = 0;
@@ -165,7 +166,9 @@ public class Spawn : MonoBehaviour
             float yPos = Random.Range(islandYMin, islandYMax);
             Vector2 spawnPos = new Vector2(xPos, yPos);
 
-            if (!footpath.GetComponent<Tilemap>().HasTile(new Vector3Int((int)xPos, (int)yPos)) && !border.GetComponent<Tilemap>().HasTile(new Vector3Int((int)xPos, (int)yPos)) && !playerView.rect.Contains(spawnPos))
+            Rect playerView = new Rect(playerBody.GetComponent<Transform>().position.x - 11, playerBody.GetComponent<Transform>().position.y - 5, 22, 10);
+
+            if (!footpath.GetComponent<Tilemap>().HasTile(new Vector3Int((int)xPos, (int)yPos)) && !border.GetComponent<Tilemap>().HasTile(new Vector3Int((int)xPos, (int)yPos)) && !playerView.Contains(spawnPos))
             {
                 enemyTracer[id] += 1;
 
@@ -175,9 +178,9 @@ public class Spawn : MonoBehaviour
             else waitingSecond = 0;
                         
         }
-
+        
         yield return new WaitForSeconds(waitingSecond);
-        yield return dropInsideMap(spawnSubject, maxSpawn, spawnRate, id);
+        yield return dropInsideMap(spawnSubject, maxSpawn, spawnRate, playerBody, id);
     }
 
     public void UpdetEnemyTracer(int key) { if (enemyTracer.ContainsKey(key)) enemyTracer[key] -= 1; }
