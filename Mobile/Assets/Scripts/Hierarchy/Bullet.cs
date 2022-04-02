@@ -18,7 +18,9 @@ public class Bullet : MonoBehaviour
     private Transform target;
 
 
-
+    //
+    private float lerpTimerRocket;
+    private readonly float totalLerpTimerRocket = 3f;
     public Bullet(float time, float dmg, GameObject bullet, int id)
     {
         this.time = time;
@@ -30,36 +32,29 @@ public class Bullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         if (!isHoming) rb.AddForce(transform.up * bulletVelocity, ForceMode2D.Impulse);
+        lerpTimerRocket = 0f;
         Destroy(gameObject, time);
+
+        if (isHoming)
+        {
+            target = FindTarget();
+        }
     }
 
     void FixedUpdate()
     {
         if (isHoming)
         {
-            GameObject[] targets = GameObject.FindGameObjectsWithTag("Enemy");
-            float minDist = Mathf.Infinity;
-            float dist;
-
-            foreach(GameObject currTarget in targets)
+            if (target == null)
             {
-                dist = Vector3.Distance(transform.position, currTarget.GetComponent<Transform>().position);
-                if(dist < minDist)
-                {
-                    target = currTarget.GetComponent<Transform>();
-                    minDist = dist;
-                }
+                target = FindTarget();
             }
-
-            Vector2 direction = (Vector2)target.position - rb.position;
-            direction.Normalize();
-
-            float rotateAmount = Vector3.Cross(direction, transform.up).z;
-            rb.angularVelocity = -rotateAmount * 200f;
+            //HomeStorica();
+            Vector2 point2target = (Vector2)transform.position - (Vector2)target.position;
+            point2target.Normalize();
+            float value = Vector3.Cross(point2target, transform.up).z;
+            rb.angularVelocity = 200f * value;
             rb.velocity = transform.up * bulletVelocity;
-            
-
-
         }
         
     }
@@ -97,5 +92,44 @@ public class Bullet : MonoBehaviour
     public float GetId()
     {
         return id;
+    }
+
+    private Transform FindTarget()
+    {
+        GameObject[] targets = GameObject.FindGameObjectsWithTag("Enemy");
+        float minDist = Mathf.Infinity;
+        float dist;
+        Transform target = null;
+        foreach (GameObject currTarget in targets)
+        {
+            dist = Vector3.Distance(transform.position, currTarget.GetComponent<Transform>().position);
+            if (dist < minDist)
+            {
+                target = currTarget.GetComponent<Transform>();
+                minDist = dist;
+            }
+        }
+
+        return target;
+    }
+    private void HomeStorica()
+    {
+        if (target == null)
+        {
+            target = FindTarget();
+        }
+
+        Vector2 direction = (Vector2)target.position - rb.position;
+        direction.Normalize();
+
+        lerpTimerRocket += Time.deltaTime;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+        float angleOriginal = gameObject.GetComponent<Rigidbody2D>().rotation;
+        float percent = lerpTimerRocket / 10f;
+        if (lerpTimerRocket > 3f) percent = 1;
+        if (angle != angleOriginal)
+            gameObject.GetComponent<Rigidbody2D>().rotation = (1 - percent) * angleOriginal + (angle * percent);
+
+        rb.velocity = transform.up * bulletVelocity;
     }
 }
