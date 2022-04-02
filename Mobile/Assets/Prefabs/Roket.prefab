@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7075844430593139503}
   - component: {fileID: -5432187672886042530}
   - component: {fileID: 3605413542035034499}
+  - component: {fileID: -4030210614280118058}
   m_Layer: 13
   m_Name: Roket
   m_TagString: Bullet
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 4026332307625284837}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 15.81, y: -1.48, z: 0}
-  m_LocalScale: {x: 0.25274545, y: 0.27925047, z: 0.6622815}
+  m_LocalScale: {x: 2.1401772, y: 2.3646142, z: 5.608013}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,8 +77,8 @@ SpriteRenderer:
   m_SortingLayerID: 1675614095
   m_SortingLayer: -1
   m_SortingOrder: 9
-  m_Sprite: {fileID: 21300000, guid: 7e8427e7ba8c4304cace49fa60c5ace8, type: 3}
-  m_Color: {r: 0.5660378, g: 0.28515488, b: 0.29616985, a: 0.8745098}
+  m_Sprite: {fileID: 21300000, guid: 87f30f65304c9194bab0a828c2b8a871, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -100,18 +101,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.008747727, y: -0.0070465803}
+  m_Offset: {x: -0.0010172725, y: 0.0119443685}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.99, y: 1.95}
+    oldSize: {x: 0.32, y: 0.46}
     newSize: {x: 1, y: 0.8828125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7268303, y: 1.7429032}
+  m_Size: {x: 0.08851683, y: 0.2775943}
   m_EdgeRadius: 0
 --- !u!50 &-5432187672886042530
 Rigidbody2D:
@@ -149,3 +150,18 @@ MonoBehaviour:
   time: 3
   bulletVelocity: 4
   isHoming: 1
+--- !u!111 &-4030210614280118058
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4026332307625284837}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: d69795f3aa600db48863a53153cb56f8, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
