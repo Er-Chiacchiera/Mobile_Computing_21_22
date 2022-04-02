@@ -45,11 +45,11 @@ public class Bullet : MonoBehaviour
     {
         if (isHoming)
         {
-            //home();
             if (target == null)
             {
                 target = FindTarget();
             }
+            //HomeStorica();
             Vector2 point2target = (Vector2)transform.position - (Vector2)target.position;
             point2target.Normalize();
             float value = Vector3.Cross(point2target, transform.up).z;
