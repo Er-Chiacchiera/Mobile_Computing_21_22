@@ -80,13 +80,14 @@ public class Enemy : Entity
 
         if(getHealth() <= 0)
         {
+            
             Destroy(gameObject);
             game.updateScore(grantScore);
 
             //da valutare le seguenti aggiunte
             /*
-            Destroy(gameObject, onDeathTime);
             animator.SetTrigger("Death");
+            Destroy(gameObject, onDeathTime);
             this.ai.isStopped = true;
             this.GetComponent<BoxCollider2D>().enabled = false;
             this.enabled = false;*/
@@ -128,9 +129,8 @@ public class Enemy : Entity
         if (ai != null) ai.onSearchPath -= Update;
     }
 
-    private void OnDestroy()
+    public void OnDestroy()
     {
-
         Destroy(hpBarReference);
         //aggiorno le statistiche dello spawner
         if (generationId != -1)

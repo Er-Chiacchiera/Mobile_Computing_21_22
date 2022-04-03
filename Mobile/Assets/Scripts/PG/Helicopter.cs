@@ -5,6 +5,8 @@ using UnityEngine;
 public class Helicopter : Shooter
 {
     static int id = 3;
+    [SerializeField]
+    private GameObject explosion;
 
     public Helicopter() : base() //parametri da sistemare
     {
@@ -30,6 +32,12 @@ public class Helicopter : Shooter
     private new void FixedUpdate()
     {
         base.FixedUpdate();
+    }
+
+    private new void OnDestroy()
+    {
+        if (getHealth() <= 0)
+            GameObject.Destroy(Instantiate(explosion, transform.position, Quaternion.identity), 0.5f);
     }
 
 
