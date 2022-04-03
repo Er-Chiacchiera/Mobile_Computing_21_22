@@ -17,10 +17,6 @@ public class Bullet : MonoBehaviour
     private bool isHoming = false;
     private Transform target;
 
-
-    //
-    private float lerpTimerRocket;
-    private readonly float totalLerpTimerRocket = 3f;
     public Bullet(float time, float dmg, GameObject bullet, int id)
     {
         this.time = time;
@@ -32,7 +28,6 @@ public class Bullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         if (!isHoming) rb.AddForce(transform.up * bulletVelocity, ForceMode2D.Impulse);
-        lerpTimerRocket = 0f;
         Destroy(gameObject, time);
 
         if (isHoming)
@@ -112,6 +107,8 @@ public class Bullet : MonoBehaviour
 
         return target;
     }
+    
+    /* **in memoria delle due ore di tempo buttate dal nostro amico giordano detto tavernello**
     private void HomeStorica()
     {
         if (target == null)
@@ -131,5 +128,5 @@ public class Bullet : MonoBehaviour
             gameObject.GetComponent<Rigidbody2D>().rotation = (1 - percent) * angleOriginal + (angle * percent);
 
         rb.velocity = transform.up * bulletVelocity;
-    }
+    }*/
 }

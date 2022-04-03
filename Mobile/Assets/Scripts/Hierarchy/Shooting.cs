@@ -47,7 +47,7 @@ public class Shooting : MonoBehaviour
         }
 
         if (idWeapon == 1) Shoot(bulletPrefabBase, baseFireRate, baseDamage, baseVelocity);
-        if (idWeapon == 2) Shoot(bulletPrefabRazzo, 1, 10, 5.0f);  //da parametrizzare
+        if (idWeapon == 2) Shoot(bulletPrefabRazzo, 1, 30, 5.0f);  //da parametrizzare
         if (idWeapon == 3) Shoot(bulletPrefabLaser, 30f, 3f, 40.0f); //da parametrizzare
 
     }
