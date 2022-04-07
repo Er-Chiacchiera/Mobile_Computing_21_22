@@ -29,6 +29,8 @@ public class MilitaryJeep : Spawner
 
     private new void OnDestroy()
     {
+        base.OnDestroy();
+
         if (getHealth() <= 0)
             GameObject.Destroy(Instantiate(explosion, transform.position, Quaternion.identity), 0.5f);
     }

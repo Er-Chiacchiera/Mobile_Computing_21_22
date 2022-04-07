@@ -22,7 +22,6 @@ public class Shooting : MonoBehaviour
     //parametri proiettile base
     private readonly float baseFireRate = 9f;
     private readonly float baseDamage = 10f;
-    private readonly float baseVelocity = 5f;
     //parametri proiettile laser
 
     //parametri proiettile razzo
@@ -46,13 +45,13 @@ public class Shooting : MonoBehaviour
             gameObject.GetComponent<Player>().rigidBody.rotation = angle;
         }
 
-        if (idWeapon == 1) Shoot(bulletPrefabBase, baseFireRate, baseDamage, baseVelocity);
-        if (idWeapon == 2) Shoot(bulletPrefabRazzo, 1, 30, 5.0f);  //da parametrizzare
-        if (idWeapon == 3) Shoot(bulletPrefabLaser, 30f, 3f, 40.0f); //da parametrizzare
+        if (idWeapon == 1) Shoot(bulletPrefabBase, baseFireRate, baseDamage);
+        if (idWeapon == 2) Shoot(bulletPrefabRazzo, 1, 30);  //da parametrizzare
+        if (idWeapon == 3) Shoot(bulletPrefabLaser, 30f, 3f); //da parametrizzare
 
     }
 
-    public void Shoot(GameObject bulletPrefab, float fireRate, float dmg, float velocity)
+    public void Shoot(GameObject bulletPrefab, float fireRate, float dmg)
     {
         if ((direction.x < -distanzaJ || direction.x > distanzaJ || direction.y < -distanzaJ || direction.y > distanzaJ) && fireRate != 0 && (Time.time > (1f / fireRate) + lastShot))
         {
@@ -75,4 +74,5 @@ public class Shooting : MonoBehaviour
     {
         this.idWeapon = idWeapon;
     }
+
 }

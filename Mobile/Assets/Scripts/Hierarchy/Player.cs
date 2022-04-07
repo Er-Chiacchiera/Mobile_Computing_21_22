@@ -20,6 +20,7 @@ public class Player : Entity
     public Image greenBackHealthBar;
     public TextMeshProUGUI healthBarText;
 
+
     //shield
     private bool shieldActivated;
     private float shieldValue;
