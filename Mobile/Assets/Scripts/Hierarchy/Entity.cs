@@ -7,6 +7,9 @@ public class Entity : MonoBehaviour
     [SerializeField] private float maxHealth;
     private float health;
     [SerializeField] private float speed;
+    [SerializeField] protected float fireRate;
+    [SerializeField] protected float dmg;
+
     private int id;
 
     protected float lerpTimerHealthBar; 

@@ -13,13 +13,17 @@ public class Player : Entity
     public Joystick movJoystick;
     private Vector2 movement;
 
+    public Transform firePointDx;
+    public Transform firePointSx;
+    public Joystick aimJoystick;
+    private readonly float distanzaJ = 0.5f; //distanza joystick dal centro per sparare
+
     //health bar stuff (float lerpTimer in Entity.cs)
     public float totalLerpTime = 2f;
     public Image frontHealthBar;
     public Image redBackHealthBar;
     public Image greenBackHealthBar;
     public TextMeshProUGUI healthBarText;
-
 
     //shield
     private bool shieldActivated;
@@ -31,13 +35,31 @@ public class Player : Entity
     //shield bar stuff
     public Image frontShieldBar;
 
+    //shooting
+    private Vector2 direction;
+    private GameObject currBullet;
+    private float lastShot = 0.0f;
+
+    //parametri proiettile base
+    private readonly float baseFireRate = 9f;
+    private readonly float baseDamage = 10f;
+    public GameObject simpleBullet;
+
+    //parametri proiettile rocket
+    public GameObject rocketBullet;
+
+    //parametri proiettile lazer
+    public GameObject lazerBullet;
+
+
+
     public Player() : base() { }
 
     new void Start()
     {
+        switch2Weapon1();
         base.Start();
         base.setId(id);
-
         shieldValue = maxShieldValue;
         shieldActivated = true;
     }
@@ -50,6 +72,9 @@ public class Player : Entity
         setHealth(Mathf.Clamp(getHealth(), 0, getMaxHealth()));
         healthBarText.text = base.getHealth().ToString() + "/" + base.getMaxHealth().ToString();
         shielsBarText.text = ((int)shieldValue).ToString() + "/" + ((int)maxShieldValue).ToString();
+
+        direction.x = aimJoystick.Horizontal;
+        direction.y = aimJoystick.Vertical;
 
         if (base.getHealth() <= 0)
         {
@@ -64,8 +89,36 @@ public class Player : Entity
     {
         //movimento
         base.rigidBody.MovePosition(rigidBody.position + movement * base.getSpeed() * Time.fixedDeltaTime);
-
+        //ricarica scudo
         RechargeShield(0.15f);
+        //rotazione
+        if (direction.x != 0 && direction.y != 0)
+        {
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+            gameObject.GetComponent<Player>().rigidBody.rotation = angle;
+        }
+
+        Shoot();
+    }
+
+
+    public void Shoot()
+    {
+        if ((direction.x < -distanzaJ || direction.x > distanzaJ || direction.y < -distanzaJ || direction.y > distanzaJ) && fireRate != 0 && (Time.time > (1f / fireRate) + lastShot))
+        {
+            lastShot = Time.time;
+            int idRobot = gameObject.GetComponent<Player>().getId();
+
+            //sx
+            GameObject bullet1 = Instantiate(currBullet, firePointSx.position, firePointSx.rotation);
+            bullet1.GetComponent<Bullet>().SetDmg(dmg);
+            bullet1.GetComponent<Bullet>().SetId(idRobot);
+
+            //dx
+            GameObject bullet2 = Instantiate(currBullet, firePointDx.position, firePointDx.rotation);
+            bullet2.GetComponent<Bullet>().SetDmg(dmg);
+            bullet2.GetComponent<Bullet>().SetId(idRobot);
+        }
     }
 
     private void CalcoloSpostamento()
@@ -200,6 +253,29 @@ public class Player : Entity
                 shieldValue += valuePerFrame;
             }
         }
+    }
+
+    public void switch2Weapon1()
+    {
+        currBullet = simpleBullet;
+        dmg = baseDamage;
+        fireRate = baseFireRate;
+    }
+
+
+    public void switch2Weapon2()
+    {
+        currBullet = rocketBullet;
+        dmg = baseDamage;
+        fireRate = baseFireRate;
+    }
+
+
+    public void switch2Weapon3()
+    {
+        currBullet = lazerBullet;
+        dmg = baseDamage;
+        fireRate = baseFireRate;
     }
 
 }

@@ -241,19 +241,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b23e2c5171b720439608fc3c23d52ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 2
-  fireRate: 0.6
   maxHealth: 30
   speed: 1
+  fireRate: 0.6
+  dmg: 2
   rigidBody: {fileID: 7963374897363076874}
   animator: {fileID: 5669753654235546649}
   grantScore: 5
   stopDistance: 6
-  limitDistance: 15
   hpBar: {fileID: 7479689915047091773, guid: 0976a819a97b3ad46a54cdb03bae1cfd, type: 3}
   firePoints:
   - {fileID: 3978522512030025793}
   bulletPrefab: {fileID: 4026332307625284837, guid: 7002e574437878841ad740b07ce3df0e, type: 3}
+  deadBody: {fileID: 3132611118664949978, guid: 30bf900db2a65d1438733aeb116d0df5, type: 3}
 --- !u!1 &2873456304477838620
 GameObject:
   m_ObjectHideFlags: 0

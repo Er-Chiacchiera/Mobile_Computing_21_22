@@ -26,8 +26,6 @@ public class Enemy : Entity
     protected bool isInScope;
     private int generationId = -1; //identifica l'unità che mi ha generato (-1 valore non valido)
     protected int progId = -1; //identifica l'ordine di generazione del'unità
-    [SerializeField] private float dmg;
-    [SerializeField] private float fireRate;
 
     //healthbar
     public GameObject hpBar;

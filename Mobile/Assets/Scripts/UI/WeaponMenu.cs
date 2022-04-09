@@ -7,21 +7,21 @@ public class WeaponMenu : MonoBehaviour
 
     public void Weapon1()
     {
-        FindObjectOfType<Shooting>().SetIdWeapon(1);
+        FindObjectOfType<Player>().switch2Weapon1();
         GameObject.Find("Robot").GetComponent<Animator>().SetTrigger("disable");
         GameObject.Find("Robot").GetComponent<Animator>().SetTrigger("w1");
     }
 
     public void Weapon2()
     {
-        FindObjectOfType<Shooting>().SetIdWeapon(2);
+        FindObjectOfType<Player>().switch2Weapon2();
         GameObject.Find("Robot").GetComponent<Animator>().SetTrigger("disable");
         GameObject.Find("Robot").GetComponent<Animator>().SetTrigger("w2");
     }
 
     public void Weapon3()
     {
-        FindObjectOfType<Shooting>().SetIdWeapon(3);
+        FindObjectOfType<Player>().switch2Weapon3();
         GameObject.Find("Robot").GetComponent<Animator>().SetTrigger("disable");
         GameObject.Find("Robot").GetComponent<Animator>().SetTrigger("w3");
     }
