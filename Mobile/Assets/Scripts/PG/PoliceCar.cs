@@ -32,8 +32,11 @@ public class PoliceCar : Spawner
     {
         base.OnDestroy();
 
-        if (getHealth()<=0)
-        GameObject.Destroy(Instantiate(explosion, transform.position, Quaternion.identity), 0.5f);
+        if (getHealth() <= 0)
+        {
+            GameObject.Destroy(Instantiate(explosion, transform.position, Quaternion.identity), 0.5f);
+            game.updateStats(this.GetType());
+        }
     }
 
 }

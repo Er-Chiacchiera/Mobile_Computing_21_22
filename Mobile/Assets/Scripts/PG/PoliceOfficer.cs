@@ -38,7 +38,11 @@ public class PoliceOfficer : Shooter
         base.OnDestroy();
 
         if (getHealth() <= 0)
+        {
             GameObject.Destroy(Instantiate(deadBody, transform.position, Quaternion.identity), 2f);
+            game.updateStats(this.GetType());
+        }
+            
     }
 
 }

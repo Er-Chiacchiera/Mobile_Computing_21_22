@@ -39,7 +39,10 @@ public class Helicopter : Shooter
         base.OnDestroy();
 
         if (getHealth() <= 0)
+        {
             GameObject.Destroy(Instantiate(explosion, transform.position, Quaternion.identity), 0.5f);
+            game.updateStats(this.GetType());
+        }
     }
 
 

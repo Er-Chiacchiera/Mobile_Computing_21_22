@@ -32,4 +32,14 @@ public class Soldier : Shooter
         base.FixedUpdate();
     }
 
+    private new void OnDestroy()
+    {
+        base.OnDestroy();
+
+        if (getHealth() <= 0)
+        {
+            game.updateStats(this.GetType());
+        }
+    }
+
 }
