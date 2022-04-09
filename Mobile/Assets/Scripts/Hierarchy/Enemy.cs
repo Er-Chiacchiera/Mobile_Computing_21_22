@@ -9,30 +9,23 @@ public class Enemy : Entity
     public Animator animator;
 
     //score parameter
+    protected GameHandler game;
     [SerializeField]
     private float grantScore = 0.0f;
-    private GameHandler game;
+   
 
     //pathfinder parameter
     [SerializeField]
     protected float stopDistance = 10;
-    [SerializeField]
-    protected float limitDistance = 15;
-    //despawn parameter
-    private float maxOverTime = 8.0f;
-    private float destroyTime = 0.0f;
-
     private IAstarAI ai;
     protected GameObject player;
     private float distance;
 
     //spawn-shooting parameter
-    protected bool isInScope;
     protected Spawn spawn;
+    protected bool isInScope;
     private int generationId = -1; //identifica l'unità che mi ha generato (-1 valore non valido)
     protected int progId = -1; //identifica l'ordine di generazione del'unità
-    [SerializeField] private float dmg;
-    [SerializeField] private float fireRate;
 
     //healthbar
     public GameObject hpBar;
@@ -62,6 +55,12 @@ public class Enemy : Entity
     {
         UpdateHealthBar();
 
+        if(getHealth() <= 0)
+        { 
+            Destroy(gameObject);
+            game.updateScore(grantScore);
+        }
+
         if (player.GetComponent<Transform>().position != null && ai != null) ai.destination = player.GetComponent<Transform>().position;
         distance = ai.remainingDistance;
 
@@ -69,7 +68,6 @@ public class Enemy : Entity
         {
             isInScope = true;
             this.ai.isStopped = true;
-            //this.enabled = false;
         }
 
         if (distance > stopDistance)
@@ -78,43 +76,6 @@ public class Enemy : Entity
             this.isInScope = false;
         }
 
-        if(getHealth() <= 0)
-        {
-            
-            Destroy(gameObject);
-            game.updateScore(grantScore);
-
-            //da valutare le seguenti aggiunte
-            /*
-            animator.SetTrigger("Death");
-            Destroy(gameObject, onDeathTime);
-            this.ai.isStopped = true;
-            this.GetComponent<BoxCollider2D>().enabled = false;
-            this.enabled = false;*/
-        }
-
-
-    }
-
-    private void FixedUpdate()
-    {
-        if (distance > limitDistance && destroyTime == 0)
-        {
-            destroyTime = Time.time + maxOverTime;
-        }
-
-        if (Time.time > destroyTime)
-        {
-            if (distance > limitDistance)
-            {
-                Destroy(gameObject);
-            }
-
-            else
-            {
-                destroyTime = 0;
-            }
-        }
     }
 
     private void OnEnable()

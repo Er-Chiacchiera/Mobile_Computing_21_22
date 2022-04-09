@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 7628928352405969928}
   - component: {fileID: 7075844430593139503}
   - component: {fileID: -5432187672886042530}
-  - component: {fileID: 3605413542035034499}
   - component: {fileID: -4030210614280118058}
+  - component: {fileID: -5936262311123449446}
   m_Layer: 13
   m_Name: Roket
   m_TagString: Bullet
@@ -135,21 +135,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3605413542035034499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4026332307625284837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f40d70a708ab9134a87bbe9e4ea3a422, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  time: 3
-  bulletVelocity: 4
-  isHoming: 1
 --- !u!111 &-4030210614280118058
 Animation:
   m_ObjectHideFlags: 0
@@ -160,8 +145,23 @@ Animation:
   m_Enabled: 1
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: d69795f3aa600db48863a53153cb56f8, type: 2}
-  m_Animations: []
+  m_Animations:
+  - {fileID: 7400000, guid: d69795f3aa600db48863a53153cb56f8, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &-5936262311123449446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4026332307625284837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fcb0d880d34495459d790020bb6e01b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 3
+  bulletVelocity: 4

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PoliceOfficer : Shooter
 {
     static int id = 2;
+    public GameObject deadBody;
 
     public PoliceOfficer() : base()
     {
@@ -30,6 +31,14 @@ public class PoliceOfficer : Shooter
     private new void FixedUpdate()
     {
         base.FixedUpdate();
+    }
+
+    private new void OnDestroy()
+    {
+        base.OnDestroy();
+
+        if (getHealth() <= 0)
+            GameObject.Destroy(Instantiate(deadBody, transform.position, Quaternion.identity), 2f);
     }
 
 }

@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
-    private int idWeapon = 1;
-
     //shooting
     public Transform firePointDx;
     public Transform firePointSx;
     public Joystick aimJoystick;
 
-    public GameObject bulletPrefabBase;
-    public GameObject bulletPrefabLaser;
-    public GameObject bulletPrefabRazzo;
+    private Vector2 direction;
 
+    //curr weapon stuff
+    private GameObject currBullet;
+    private float fireRate;
+    private float dmg;
     private float lastShot = 0.0f;
 
     private readonly float distanzaJ = 0.5f; //distanza joystick dal centro per sparare
@@ -22,13 +22,10 @@ public class Shooting : MonoBehaviour
     //parametri proiettile base
     private readonly float baseFireRate = 9f;
     private readonly float baseDamage = 10f;
-    private readonly float baseVelocity = 5f;
     //parametri proiettile laser
 
     //parametri proiettile razzo
 
-
-    private Vector2 direction;
 
     private void Update()
     {
@@ -45,14 +42,11 @@ public class Shooting : MonoBehaviour
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
             gameObject.GetComponent<Player>().rigidBody.rotation = angle;
         }
-
-        if (idWeapon == 1) Shoot(bulletPrefabBase, baseFireRate, baseDamage, baseVelocity);
-        if (idWeapon == 2) Shoot(bulletPrefabRazzo, 1, 30, 5.0f);  //da parametrizzare
-        if (idWeapon == 3) Shoot(bulletPrefabLaser, 30f, 3f, 40.0f); //da parametrizzare
-
+        
+        Shoot();
     }
 
-    public void Shoot(GameObject bulletPrefab, float fireRate, float dmg, float velocity)
+    public void Shoot()
     {
         if ((direction.x < -distanzaJ || direction.x > distanzaJ || direction.y < -distanzaJ || direction.y > distanzaJ) && fireRate != 0 && (Time.time > (1f / fireRate) + lastShot))
         {
@@ -60,19 +54,38 @@ public class Shooting : MonoBehaviour
             int idRobot = gameObject.GetComponent<Player>().getId();
 
             //sx
-            GameObject bullet1 = Instantiate(bulletPrefab, firePointSx.position, firePointSx.rotation);
+            GameObject bullet1 = Instantiate(currBullet, firePointSx.position, firePointSx.rotation);
             bullet1.GetComponent<Bullet>().SetDmg(dmg);
             bullet1.GetComponent<Bullet>().SetId(idRobot);
 
             //dx
-            GameObject bullet2 = Instantiate(bulletPrefab, firePointDx.position, firePointDx.rotation);
+            GameObject bullet2 = Instantiate(currBullet, firePointDx.position, firePointDx.rotation);
             bullet2.GetComponent<Bullet>().SetDmg(dmg);
             bullet2.GetComponent<Bullet>().SetId(idRobot);
         }
     }
 
-    public void SetIdWeapon(int idWeapon)
+
+    public void switch2Weapon1()
     {
-        this.idWeapon = idWeapon;
+        currBullet = GameObject.Find("Bullet");
+        dmg = baseDamage;
+        fireRate = baseFireRate;
+    }
+
+
+    public void switch2Weapon2()
+    {
+        currBullet = GameObject.Find("Roket");
+        dmg = baseDamage;
+        fireRate = baseFireRate;
+    }
+
+
+    public void switch2Weapon3()
+    {
+        currBullet = GameObject.Find("Bullet");
+        dmg = baseDamage;
+        fireRate = baseFireRate;
     }
 }

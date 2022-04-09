@@ -30,7 +30,9 @@ public class PoliceCar : Spawner
 
     private new void OnDestroy()
     {
-        if(getHealth()<=0)
+        base.OnDestroy();
+
+        if (getHealth()<=0)
         GameObject.Destroy(Instantiate(explosion, transform.position, Quaternion.identity), 0.5f);
     }
 
