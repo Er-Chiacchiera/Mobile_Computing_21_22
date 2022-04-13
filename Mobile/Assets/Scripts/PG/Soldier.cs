@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Soldier : Shooter
 {
-    static int id = 4;
+    public static int id = 4;
 
     public Soldier() : base()
     {
@@ -30,6 +30,16 @@ public class Soldier : Shooter
     private new void FixedUpdate()
     {
         base.FixedUpdate();
+    }
+
+    private new void OnDestroy()
+    {
+        base.OnDestroy();
+
+        if (getHealth() <= 0)
+        {
+            game.updateStats(this.GetType());
+        }
     }
 
 }

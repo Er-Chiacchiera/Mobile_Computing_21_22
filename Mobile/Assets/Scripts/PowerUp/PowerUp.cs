@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,9 @@ public abstract class PowerUp : MonoBehaviour
 {
     [SerializeField]
     private float rotationSpeed = 0.6f;
+
+    protected string soundName;
+
     private void FixedUpdate()
     {
         transform.Rotate(new Vector3(0, 0, rotationSpeed));
@@ -19,6 +23,8 @@ public abstract class PowerUp : MonoBehaviour
             if (!robot.GetComponent<Player>().FullHealth())
             {
                 Destroy(gameObject);
+                
+                GameObject.FindObjectOfType<AudioManager>().play(GetType().ToString());
                 interaction(collision);
             }
         }

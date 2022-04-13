@@ -199,7 +199,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.3856916, y: 2.3749275}
+  m_Size: {x: 1.385692, y: 2.3749275}
   m_EdgeRadius: 0
 --- !u!50 &948691392659394251
 Rigidbody2D:
@@ -326,13 +326,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 80
   speed: 2
+  fireRate: 0
+  dmg: 0
   rigidBody: {fileID: 948691392659394251}
   animator: {fileID: 2108944154723011956}
   grantScore: 40
   stopDistance: 10
-  limitDistance: 30
-  dmg: 0
-  fireRate: 0
   hpBar: {fileID: 7479689915047091773, guid: 0976a819a97b3ad46a54cdb03bae1cfd, type: 3}
   maxSpawn: 1
   spawnRate: 0.15

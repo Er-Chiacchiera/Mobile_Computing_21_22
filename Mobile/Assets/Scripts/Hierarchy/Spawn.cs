@@ -18,17 +18,11 @@ public class Spawn : MonoBehaviour
     //player screen radius
     private float outsideScreenRadius = 2;
 
-    //map dimension 
-    private float xMin = -68.4f;
-    private float xMax = 94.7f;
-    private float yMin = -37.6f;
-    private float yMax = 49.1f;
+    //Island dimension islandXMin = -48.3f; islandXMax =  74.6f; islandYMin = -25.5f; islandYMax = 36.3f;
+    private Bounds island;
 
-    //Island dimension 
-    private float islandXMin = -48.3f;
-    private float islandXMax =  74.6f;
-    private float islandYMin = -25.5f;
-    private float islandYMax = 36.3f;
+    //map dimension: xMin = -68.4f; xMax = 94.7f; yMin = -37.6f; yMax = 49.1f;
+    private Bounds map;
 
     public GameObject footpath;
     public GameObject border;
@@ -39,6 +33,13 @@ public class Spawn : MonoBehaviour
     {
         enemyTracer = new Dictionary<int, int>();
         generatedEnemyTracer = new Dictionary<int, int>();
+        map = new Bounds();
+        map.max = new Vector3(94.7f, 49.1f);
+        map.min = new Vector3(-68.4f, -37.6f);
+
+        island = new Bounds();
+        island.max = new Vector3(74.6f, 36.3f);
+        island.min = new Vector3(-48.3f, -25.5f);
     }
 
     public IEnumerator SpawnNearEnemy(Animator animator, GameObject Spawner, GameObject spawnSubject, int maxSpawn, float spawnRate, int id)
@@ -101,7 +102,7 @@ public class Spawn : MonoBehaviour
 
             spawnPos += direction * spawnRadius;
 
-            if (!footpath.GetComponent<Tilemap>().HasTile(new Vector3Int((int)spawnPos.x, (int)spawnPos.y)) && !border.GetComponent<Tilemap>().HasTile(new Vector3Int((int)spawnPos.x, (int)spawnPos.y)))
+            if (positionCheck(spawnPos, playerBody, spawnSubject))
             {
                 enemyTracer[id] += 1;
                 //spawn
@@ -129,13 +130,9 @@ public class Spawn : MonoBehaviour
 
         if (spawnCounter < maxSpawn)
         {
-            float xPos = Random.Range(xMin, xMax);
-            float yPos = Random.Range(yMin, yMax);
+            Vector2 spawnPos = getPositionInRange(map.min.x, map.max.x, map.min.y, map.max.y);
 
-            Vector2 spawnPos = new Vector2(xPos, yPos);
-            Rect playerView = new Rect(playerBody.GetComponent<Transform>().position.x - 11, playerBody.GetComponent<Transform>().position.y - 5, 22, 10);
-
-            if (!playerView.Contains(spawnPos))
+            if (outsidePlayerView(spawnPos, playerBody))
             {
                 Instantiate(spawnSubject, spawnPos, Quaternion.identity).GetComponent<Enemy>().setProgId(idProgression += 1);
                 enemyTracer[id] += 1;
@@ -161,14 +158,9 @@ public class Spawn : MonoBehaviour
 
         if (spawnCounter < maxSpawn)
         {
+            Vector2 spawnPos = getPositionInRange(island.min.x, island.max.x, island.min.y, island.max.y);
 
-            float xPos = Random.Range(islandXMin, islandXMax);
-            float yPos = Random.Range(islandYMin, islandYMax);
-            Vector2 spawnPos = new Vector2(xPos, yPos);
-
-            Rect playerView = new Rect(playerBody.GetComponent<Transform>().position.x - 11, playerBody.GetComponent<Transform>().position.y - 5, 22, 10);
-
-            if (!footpath.GetComponent<Tilemap>().HasTile(new Vector3Int((int)xPos, (int)yPos)) && !border.GetComponent<Tilemap>().HasTile(new Vector3Int((int)xPos, (int)yPos)) && !playerView.Contains(spawnPos))
+            if (positionCheck(spawnPos, playerBody, spawnSubject))
             {
                 enemyTracer[id] += 1;
 
@@ -190,5 +182,32 @@ public class Spawn : MonoBehaviour
     public void RemoveGenerationUnit(int key) { if (generatedEnemyTracer.ContainsKey(key)) generatedEnemyTracer.Remove(key); }
 
 
+    public Vector2 getPositionInRange(float xMin, float xMax, float yMin, float yMax)
+    {
+        float xPos = Random.Range(xMin, xMax);
+        float yPos = Random.Range(yMin, yMax);
+        return new Vector2(xPos, yPos);
+    }
 
-}
+    private bool positionCheck(Vector2 spawnPos, GameObject playerBody, GameObject spawnSubject)
+    {
+        
+        // posApprox = new Bounds(new Vector3((spawnPos.x-0.5f), (spawnPos.y-0.5f)), new Vector3(1f,1f));
+
+        Bounds posApprox = spawnSubject.GetComponent<Collider2D>().bounds;
+        posApprox.center = spawnPos;
+
+        bool isFarFromFootpath = footpath.GetComponent<Tilemap>().GetTilesRangeCount(new Vector3Int((int)posApprox.min.x, (int)posApprox.min.y), new Vector3Int((int)posApprox.max.x, (int)posApprox.max.y)) == 0;
+        bool isInsideBorder = border.GetComponent<Tilemap>().GetTilesRangeCount(new Vector3Int((int)posApprox.min.x, (int)posApprox.min.y), new Vector3Int((int)posApprox.max.x, (int)posApprox.max.y)) == 0;
+        
+
+        return isFarFromFootpath && isInsideBorder && outsidePlayerView(spawnPos, playerBody);
+    }
+
+    private bool outsidePlayerView(Vector2 spawnPos, GameObject playerBody)
+    {
+        Rect playerView = new Rect(playerBody.GetComponent<Transform>().position.x - 11, playerBody.GetComponent<Transform>().position.y - 5, 22, 10);
+        return !playerView.Contains(spawnPos);
+    }
+
+    }

@@ -10,6 +10,7 @@ public class WeaponMenu : MonoBehaviour
         FindObjectOfType<Player>().switch2Weapon1();
         GameObject.Find("Robot").GetComponent<Animator>().SetTrigger("disable");
         GameObject.Find("Robot").GetComponent<Animator>().SetTrigger("w1");
+        GameObject.Find("Robot").GetComponent<AudioSource>().Play();
     }
 
     public void Weapon2()
@@ -17,6 +18,7 @@ public class WeaponMenu : MonoBehaviour
         FindObjectOfType<Player>().switch2Weapon2();
         GameObject.Find("Robot").GetComponent<Animator>().SetTrigger("disable");
         GameObject.Find("Robot").GetComponent<Animator>().SetTrigger("w2");
+        GameObject.Find("Robot").GetComponent<AudioSource>().Play();
     }
 
     public void Weapon3()
@@ -24,5 +26,6 @@ public class WeaponMenu : MonoBehaviour
         FindObjectOfType<Player>().switch2Weapon3();
         GameObject.Find("Robot").GetComponent<Animator>().SetTrigger("disable");
         GameObject.Find("Robot").GetComponent<Animator>().SetTrigger("w3");
+        GameObject.Find("Robot").GetComponent<AudioSource>().Play();
     }
 }

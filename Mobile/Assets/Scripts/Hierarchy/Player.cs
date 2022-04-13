@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class Player : Entity
 {
-    static int id = 0;
+    public static int id = 0;
 
     //Joystick
     public Joystick movJoystick;
