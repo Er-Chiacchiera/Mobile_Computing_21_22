@@ -27,16 +27,19 @@ public class GameHandler : MonoBehaviour
 
     //GameOver Stuff
     private bool gameHasEnded = false;
-    public GameObject gameOverMenu; 
+    public GameObject gameOverMenu;
+
+    private AudioManager audioManager;
 
     void Start()
     {
+        audioManager = FindObjectOfType<AudioManager>();
         spawner = this.GetComponent<Spawn>();
         gameStats = new Dictionary<Type, int>();
         StartCoroutine(spawner.dropInsideMap(wrench, 10, 99, playerBody, 10));
-        StartCoroutine(spawner.dropInsideMap(policeCar, 4, spawnRate, playerBody, 1));
-        StartCoroutine(spawner.RandomDrop(helicopter, 2, spawnRate, playerBody, 3));
-        StartCoroutine(spawner.dropInsideMap(militaryJeep, 3, (spawnRate-0.05f), playerBody, 4));
+        StartCoroutine(spawner.dropInsideMap(policeCar, 4, spawnRate, playerBody, PoliceCar.id));
+        StartCoroutine(spawner.RandomDrop(helicopter, 2, spawnRate, playerBody, Helicopter.id));
+        StartCoroutine(spawner.dropInsideMap(militaryJeep, 3, (spawnRate-0.05f), playerBody, MilitaryJeep.id));
     }
 
     void Update()
@@ -57,6 +60,8 @@ public class GameHandler : MonoBehaviour
             gameOverMenu.GetComponentsInChildren<TextMeshProUGUI>()[0].text = "Current Score: " + score.ToString();
             gameOverMenu.GetComponentsInChildren<TextMeshProUGUI>()[1].text = getFinalStats();
             gameOverMenu.SetActive(true);
+            audioManager.play("GameOver");
+            audioManager.decreaseVolume("Theme", 0.2f);
         }
     }
 

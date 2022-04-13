@@ -15,6 +15,7 @@ public class GameOverMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameObject.FindObjectOfType<AudioManager>().increaseVolume("Theme", 0.2f);
     }
 
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PoliceOfficer : Shooter
 {
-    static int id = 2;
+    public static int id = 2;
     public GameObject deadBody;
 
     public PoliceOfficer() : base()

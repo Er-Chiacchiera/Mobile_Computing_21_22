@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PoliceCar : Spawner
 {
-    static int id = 1;
+    public static int id = 1;
     [SerializeField]
     private GameObject explosion;
 
@@ -35,6 +35,7 @@ public class PoliceCar : Spawner
         if (getHealth() <= 0)
         {
             GameObject.Destroy(Instantiate(explosion, transform.position, Quaternion.identity), 0.5f);
+            GameObject.FindObjectOfType<AudioManager>().play("Explosion");
             game.updateStats(this.GetType());
         }
     }

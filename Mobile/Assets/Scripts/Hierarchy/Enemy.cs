@@ -4,8 +4,6 @@ using Pathfinding;
 using UnityEngine;
 public class Enemy : Entity
 {
-
-    //private static float onDeathTime = 10.0f;
     public Animator animator;
 
     //score parameter

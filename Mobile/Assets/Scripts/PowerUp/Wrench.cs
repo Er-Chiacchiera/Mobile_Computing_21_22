@@ -5,6 +5,11 @@ using UnityEngine;
 public class Wrench : PowerUp
 {
 
+    private void Start()
+    {
+        soundName = "HpRestore";
+    }
+
     [SerializeField] private float restoreValue = 0.3f;
     public override void interaction(Collider2D collision)
     {

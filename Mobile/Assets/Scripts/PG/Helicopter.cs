@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Helicopter : Shooter
 {
-    static int id = 3;
+    public static int id = 3;
     [SerializeField]
     private GameObject explosion;
 
@@ -41,6 +41,7 @@ public class Helicopter : Shooter
         if (getHealth() <= 0)
         {
             GameObject.Destroy(Instantiate(explosion, transform.position, Quaternion.identity), 0.5f);
+            GameObject.FindObjectOfType<AudioManager>().play("Explosion");
             game.updateStats(this.GetType());
         }
     }

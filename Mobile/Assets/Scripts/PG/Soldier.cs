@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Soldier : Shooter
 {
-    static int id = 4;
+    public static int id = 4;
 
     public Soldier() : base()
     {
