@@ -10,7 +10,6 @@ public class Enemy : Entity
     protected GameHandler game;
     [SerializeField]
     private float grantScore = 0.0f;
-   
 
     //pathfinder parameter
     [SerializeField]
@@ -30,7 +29,6 @@ public class Enemy : Entity
     private GameObject hpBarReference;
     private float verticalDistance = 1.7f;
     private float horizontalDistance = -0.5f;
-
 
 
     public Enemy() : base()

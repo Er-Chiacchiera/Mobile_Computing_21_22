@@ -9,10 +9,7 @@ public class LoadingButton : MonoBehaviour
     public void ForceField()
     {
         Ability abilityLoader = player.GetComponent<Ability>();
-
         abilityLoader.ability.SetActive(true);
-        abilityLoader.setStartingTime(Time.fixedTime);
-        abilityLoader.isActive =true;
-
+        StartCoroutine(abilityLoader.onAbilityActivate());
     }
 }

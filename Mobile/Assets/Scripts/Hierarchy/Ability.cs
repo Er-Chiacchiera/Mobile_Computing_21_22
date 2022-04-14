@@ -5,64 +5,43 @@ using UnityEngine.UI;
 
 public class Ability : MonoBehaviour
 {
-
-    //forceField parameter
-    private bool isEnable = false;
-    public bool isActive = false;
     [SerializeField] public GameObject ability;
     [SerializeField] private Button loadingButton;
     [SerializeField] private float countdown = 0;
-    public float shutdown = 0;
-    private float startingTime = 0;
+    [SerializeField] private float shutdown = 0;
     private LoadingCircle loadingCircle;
 
-
-
-    // Start is called before the first frame update
     void Start()
     {
         loadingCircle = this.GetComponent<LoadingCircle>();
-        startingTime = Time.fixedTime;
         loadingCircle.progress = 0;
+        StartCoroutine(Countdown());
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //loading
-        if (!isEnable)
-        {
-            if (Time.fixedTime - startingTime > countdown)
-            {
-                isEnable = true;
-                loadingButton.interactable = true;
 
-            }
-
-            else
-            {
-                loadingCircle.progress = (Time.fixedTime - startingTime) / countdown;
-            }
-
-        }
-
-        //shutingdown
-        if (isActive)
-        {
-            loadingButton.interactable = false;
-            loadingCircle.progress = 0;
-
-            if (Time.fixedTime - startingTime > shutdown)
-            {
-                ability.SetActive(false);
-                isActive = false;
-                isEnable = false;
-                startingTime = Time.fixedTime;
-
-            }
-
-        }
     }
 
-    public void setStartingTime(float value) { startingTime = value; }
+    private IEnumerator Countdown()
+    {
+        float normalizedTime = 0;
+        while (normalizedTime <= 1f)
+        {
+            loadingCircle.progress = normalizedTime + 0.01f;
+            normalizedTime += Time.deltaTime / countdown;
+            yield return null;
+        }
+
+        loadingButton.interactable = true;
+    }
+
+    public IEnumerator onAbilityActivate()
+    {
+        loadingButton.interactable = false;
+        loadingCircle.progress = 0;
+        yield return new WaitForSeconds(shutdown);
+        ability.SetActive(false);
+        yield return Countdown();
+    }
 }
