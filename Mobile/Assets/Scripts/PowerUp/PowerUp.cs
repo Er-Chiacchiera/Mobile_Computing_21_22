@@ -18,15 +18,16 @@ public abstract class PowerUp : MonoBehaviour
     {
         if (collision.gameObject.tag == "Robot")
         {
-            GameObject robot = collision.gameObject;
+            //GameObject robot = collision.gameObject;
 
-            if (!robot.GetComponent<Player>().FullHealth())
-            {
-                Destroy(gameObject);
+            //if (!robot.GetComponent<Player>().FullHealth())
+            //{
+                
                 
                 GameObject.FindObjectOfType<AudioManager>().play(GetType().ToString());
                 interaction(collision);
-            }
+                Destroy(gameObject);
+            //}
         }
     }
 
